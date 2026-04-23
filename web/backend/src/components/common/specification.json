@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_common_specifications",
+  "info": {
+    "displayName": "Specification",
+    "icon": "bulletList",
+    "description": "Key-value specification pair for products"
+  },
+  "options": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

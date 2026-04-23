@@ -1,0 +1,56 @@
+# ==============================
+# Root / Monorepo
+# ==============================
+.DS_Store
+*.pem
+.atl/
+
+# ==============================
+# Node.js (shared)
+# ==============================
+node_modules/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==============================
+# Next.js (web/frontend)
+# ==============================
+web/frontend/.next/
+web/frontend/out/
+web/frontend/build/
+web/frontend/.vercel
+web/frontend/next-env.d.ts
+web/frontend/coverage/
+
+# ==============================
+# Strapi (web/backend)
+# ==============================
+web/backend/.tmp/
+web/backend/.cache/
+web/backend/build/
+web/backend/dist/
+web/backend/.strapi/
+web/backend/.strapi-updater.json
+web/backend/.strapi-cloud.json
+web/backend/public/uploads/*
+!web/backend/public/uploads/.gitkeep
+web/backend/exports/
+web/backend/license.txt
+
+# ==============================
+# Environment & Secrets
+# ==============================
+.env
+.env.local
+.env.*.local
+
+# ==============================
+# IDE
+# ==============================
+.idea/
+.vscode/
+*.swp
+*.swo
