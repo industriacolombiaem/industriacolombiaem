@@ -1,3 +1,5 @@
+"use client";
+
 import { PostHogProvider, PostHogPageView } from "@posthog/next";
 import { Suspense } from "react";
 import { SWRConfig } from "swr";
