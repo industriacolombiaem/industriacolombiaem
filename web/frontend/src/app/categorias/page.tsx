@@ -4,45 +4,52 @@ import { connection } from "next/server";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { SearchBar } from "@/components/features/SearchBar";
-import { fetchAPI, type StrapiListResponse, type Product, type Category } from "@/lib/strapi";
+import { CategoryCard } from "@/components/features/CategoryCard";
+import { fetchAPI, type StrapiListResponse, type Category } from "@/lib/strapi";
 import { generateMetadata as genSEO } from "@/lib/seo";
-import { ProductListClient } from "./ProductListClient";
 
 export async function generateMetadata(): Promise<Metadata> {
   return genSEO({
-    title: "Productos",
-    description: "Catálogo de productos industriales — Industria Colombia E&M",
-    path: "/productos",
+    title: "Categorías",
+    description: "Explora nuestras categorías de productos industriales — Industria Colombia E&M",
+    path: "/categorias",
   });
 }
 
-async function ProductData() {
+async function CategoryList() {
   void connection();
 
-  const [productsRes, categoriesRes] = await Promise.all([
-    fetchAPI<StrapiListResponse<Product>>(
-      "/api/products?populate=*"
-    ),
-    fetchAPI<StrapiListResponse<Category>>(
-      "/api/categories?populate=*"
-    ),
-  ]);
+  const res = await fetchAPI<StrapiListResponse<Category>>(
+    "/api/categories?populate=*"
+  );
 
-  const products = productsRes.data;
-  const categories = categoriesRes.data;
+  const categories = res.data;
 
-  return <ProductListClient products={products} categories={categories} />;
+  if (!categories || categories.length === 0) {
+    return (
+      <p className="text-on-surface-variant text-center py-8">
+        No hay categorías disponibles todavía.
+      </p>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((category) => (
+        <CategoryCard key={category.id} category={category} />
+      ))}
+    </div>
+  );
 }
 
-export default function ProductosPage() {
+export default function CategoriasPage() {
   return (
     <>
       <Header />
       <main className="flex-1">
         <div className="mx-auto max-w-container px-4 py-8">
           <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mb-8">
-            Productos
+            Categorías
           </h1>
           <Suspense
             fallback={
@@ -56,7 +63,7 @@ export default function ProductosPage() {
               </div>
             }
           >
-            <ProductData />
+            <CategoryList />
           </Suspense>
         </div>
       </main>

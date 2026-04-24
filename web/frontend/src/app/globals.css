@@ -85,18 +85,35 @@
   --color-tertiary: var(--color-tertiary);
 
   --font-sans: var(--font-display-xl);
+  --font-display-xl: var(--font-display-xl);
+  --font-headline-lg: var(--font-headline-lg);
 
   --text-xs: var(--text-label-sm);
   --text-sm: var(--text-section-label);
   --text-base: var(--text-body-md);
   --text-lg: var(--text-headline-lg);
   --text-3xl: var(--text-display-xl);
+  --text-display-xl: var(--text-display-xl);
+  --text-headline-lg: var(--text-headline-lg);
+
+  --leading-display-xl: var(--leading-display-xl);
+  --leading-headline-lg: var(--leading-headline-lg);
+  --leading-section-label: var(--leading-section-label);
+  --leading-body-md: var(--leading-body-md);
+  --leading-label-sm: var(--leading-label-sm);
+
+  --tracking-display-xl: var(--tracking-display-xl);
+  --tracking-headline-lg: var(--tracking-headline-lg);
+  --tracking-section-label: var(--tracking-section-label);
+  --tracking-label-sm: var(--tracking-label-sm);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
 
   --shadow-elevated: var(--shadow-elevated);
+
+  --container-max: var(--container-max);
 }
 
 body {

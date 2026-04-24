@@ -18,7 +18,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-2">
             <a
-              href="https://wa.me/57XXXXXXXXX"
+              href="https://wa.me/573134457508"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(

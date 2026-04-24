@@ -3,9 +3,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { PedidoPanel } from "@/components/features/PedidoPanel";
-import { generateMetadata } from "@/lib/seo";
+import { generateMetadata as genSEO } from "@/lib/seo";
 
-export const metadata: Metadata = generateMetadata({
+export const metadata: Metadata = genSEO({
   title: "Tu Pedido",
   description: "Arma tu pedido y contáctanos por WhatsApp — Industria Colombia E&M",
   path: "/pedido",

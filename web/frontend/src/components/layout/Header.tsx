@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { HeaderPedidoLink } from "@/components/features/PedidoBadge";
 
 export function Header() {
   return (
@@ -38,18 +39,13 @@ export function Header() {
           >
             Categorías
           </Link>
+          <HeaderPedidoLink />
         </nav>
 
-        <Link
-          href="/pedido"
-          className={cn(
-            "text-sm font-semibold uppercase tracking-section-label",
-            "text-on-surface-variant hover:text-primary",
-            "transition-colors md:hidden"
-          )}
-        >
-          Pedido
-        </Link>
+        {/* Mobile: separate pedido link with badge, no nesting */}
+        <div className="md:hidden">
+          <HeaderPedidoLink />
+        </div>
       </div>
     </header>
   );

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import type { Product } from "./strapi";
 
 const SITE_NAME = "Industria Colombia E&M";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://industriaeym.com";
+const WHATSAPP_NUMBER = "573134457508";
 
 interface SEOParams {
   title: string;
@@ -9,13 +11,6 @@ interface SEOParams {
   path: string;
   image?: string;
   type?: "website" | "article";
-  product?: {
-    name: string;
-    description: string;
-    price: number;
-    image?: string;
-    slug: string;
-  };
 }
 
 export function generateMetadata({
@@ -69,7 +64,7 @@ export function generateOrganizationSchema(): object {
     logo: `${SITE_URL}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+57-XXX-XXX-XXXX",
+      telephone: `+${WHATSAPP_NUMBER}`,
       contactType: "customer service",
       availableLanguage: "Spanish",
     },

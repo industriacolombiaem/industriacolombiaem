@@ -1,12 +1,19 @@
-import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { connection } from "next/server";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { CategoryCard } from "@/components/features/CategoryCard";
+import { ProductCard } from "@/components/features/ProductCard";
+import { RichTextRenderer } from "@/lib/blocks";
+import {
+  fetchAPI,
+  type StrapiListResponse,
+  type Category,
+} from "@/lib/strapi";
 
-export const metadata: Metadata = {
+// Static metadata — category details come from dynamic content
+export const metadata = {
   title: "Categoría | Industria Colombia E&M",
   description: "Productos por categoría — Industria Colombia E&M",
 };
@@ -17,18 +24,49 @@ interface CategoryPageProps {
 
 async function CategoryContent({ params }: CategoryPageProps) {
   const { slug } = await params;
+  void connection();
+
+  const res = await fetchAPI<StrapiListResponse<Category>>(
+    `/api/categories?filters[slug][$eq]=${slug}&populate=image&populate[products][populate]=*`
+  );
+
+  const category = res.data?.[0];
+
+  if (!category) {
+    notFound();
+  }
+
+  const products = category.products ?? [];
 
   return (
     <div className="mx-auto max-w-container px-4 py-8">
-      <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mb-8">
-        Categoría: {slug}
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CategoryCard name="Producto de ejemplo" />
+      {/* Category info */}
+      <div className="mb-8">
+        <span className="text-xs font-semibold uppercase tracking-section-label text-primary">
+          Categoría
+        </span>
+        <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mt-1">
+          {category.name}
+        </h1>
+        {category.description && (
+          <div className="mt-3 text-on-surface-variant">
+            <RichTextRenderer content={category.description} />
+          </div>
+        )}
       </div>
-      <p className="text-sm text-on-surface-variant mt-8 text-center">
-        Los productos de esta categoría se cargarán desde Strapi.
-      </p>
+
+      {/* Product grid */}
+      {products.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-on-surface-variant text-center py-8">
+          No hay productos en esta categoría todavía.
+        </p>
+      )}
     </div>
   );
 }
@@ -43,6 +81,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           fallback={
             <div className="mx-auto max-w-container px-4 py-8">
               <div className="h-8 w-48 bg-surface-container animate-pulse rounded" />
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="aspect-square bg-surface-container animate-pulse rounded"
+                  />
+                ))}
+              </div>
             </div>
           }
         >
