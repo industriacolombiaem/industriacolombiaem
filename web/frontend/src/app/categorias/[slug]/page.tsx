@@ -12,9 +12,14 @@ import {
   type Category,
 } from "@/lib/strapi";
 
-// Static metadata — category details come from dynamic content
+/*
+ * PPR constraint (Next.js 16, cacheComponents: true):
+ * `generateMetadata` with dynamic params breaks static shell prerendering.
+ * Solution: static metadata here. Title comes from layout template.
+ * Category name is visible in the dynamic content (H1) for users.
+ */
 export const metadata = {
-  title: "Categoría | Industria Colombia E&M",
+  title: "Categoría",
   description: "Productos por categoría — Industria Colombia E&M",
 };
 

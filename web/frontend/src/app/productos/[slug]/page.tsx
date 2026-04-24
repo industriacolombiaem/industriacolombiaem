@@ -17,9 +17,14 @@ import {
 import { generateProductSchema } from "@/lib/seo";
 import { AddToPedidoButton } from "@/components/features/AddToPedidoButton";
 
-// Static metadata — dynamic fields (title, description) come from JSON-LD in the page body
+/*
+ * PPR constraint (Next.js 16, cacheComponents: true):
+ * `generateMetadata` with dynamic params breaks static shell prerendering.
+ * Solution: static metadata here + JSON-LD in page body provides rich
+ * structured data for search engines. Title comes from layout template.
+ */
 export const metadata = {
-  title: "Producto | Industria Colombia E&M",
+  title: "Producto",
   description: "Detalle del producto — Industria Colombia E&M",
 };
 

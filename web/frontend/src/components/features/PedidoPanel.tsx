@@ -124,18 +124,34 @@ export function PedidoPanel() {
               {formatPrice(totalPrice())}
             </span>
           </div>
-
-          {/* Send WhatsApp button */}
-          <Button
-            onClick={sendWhatsApp}
-            size="lg"
-            className="w-full flex items-center justify-center gap-2"
-          >
-            <Send className="h-4 w-4" />
-            Enviar pedido por WhatsApp
-          </Button>
         </>
       )}
+
+      {/* WhatsApp button — always visible, disabled when empty with tooltip */}
+      <div className="relative group">
+        <Button
+          onClick={sendWhatsApp}
+          size="lg"
+          disabled={isEmpty}
+          className="w-full flex items-center justify-center gap-2"
+        >
+          <Send className="h-4 w-4" />
+          Enviar pedido por WhatsApp
+        </Button>
+        {isEmpty && (
+          <span
+            className={cn(
+              "absolute bottom-full left-1/2 -translate-x-1/2 mb-2",
+              "px-3 py-1.5 rounded-sm text-xs",
+              "bg-on-surface text-surface",
+              "opacity-0 group-hover:opacity-100 transition-opacity",
+              "pointer-events-none whitespace-nowrap"
+            )}
+          >
+            Agrega productos primero
+          </span>
+        )}
+      </div>
     </div>
   );
 }
