@@ -14,7 +14,7 @@ export function Providers({ children }: LayoutProvidersProps) {
   }
 
   return (
-    <PostHogProvider>
+    <PostHogProvider clientOptions={{ api_host: "/ingest" }}>
       <ClientProviders>{children}</ClientProviders>
     </PostHogProvider>
   );
