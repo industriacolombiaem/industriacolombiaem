@@ -35,7 +35,16 @@
       "required": false,
       "allowedTypes": ["images"]
     },
-"category": {
+"featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "specifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.specification"
+    },
+    "category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
