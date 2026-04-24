@@ -1,48 +1,21 @@
-"use client";
-
-import { PostHogProvider, PostHogPageView } from "@posthog/next";
-import { Suspense } from "react";
-import { SWRConfig } from "swr";
+import { PostHogProvider } from "@posthog/next";
 import type { ReactNode } from "react";
+import { ClientProviders } from "./client-providers";
 
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 
-function PostHogPageViewWrapper() {
-  return (
-    <Suspense fallback={null}>
-      <PostHogPageView />
-    </Suspense>
-  );
-}
-
-interface ProvidersProps {
+interface LayoutProvidersProps {
   children: ReactNode;
 }
 
-export function Providers({ children }: ProvidersProps) {
-  const body = (
-    <SWRConfig
-      value={{
-        revalidateOnFocus: false,
-        dedupingInterval: 5000,
-        onErrorRetry: (error, _key, _config, revalidate, { retryCount }) => {
-          // Never retry on 404
-          if (error.status === 404) return;
-          // Max 3 retries
-          if (retryCount >= 3) return;
-          // Retry after 5 seconds
-          setTimeout(() => revalidate({ retryCount }), 5000);
-        },
-      }}
-    >
-      {POSTHOG_KEY && <PostHogPageViewWrapper />}
-      {children}
-    </SWRConfig>
-  );
-
+export function Providers({ children }: LayoutProvidersProps) {
   if (!POSTHOG_KEY) {
-    return body;
+    return <ClientProviders>{children}</ClientProviders>;
   }
 
-  return <PostHogProvider>{body}</PostHogProvider>;
+  return (
+    <PostHogProvider>
+      <ClientProviders>{children}</ClientProviders>
+    </PostHogProvider>
+  );
 }
