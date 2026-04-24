@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { filterProducts } from "@/lib/search";
+import { usePostHog } from "@posthog/next";
 import { ProductCard } from "@/components/features/ProductCard";
 import { Search, X } from "lucide-react";
 import type { Product, Category } from "@/lib/strapi";
@@ -16,6 +17,8 @@ interface SearchBarProps {
 export function SearchBar({ products, categories, className }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [categoryId, setCategoryId] = useState<number | null>(null);
+  const posthog = usePostHog();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filtered = useMemo(
     () => filterProducts(products, { query, categoryId }),
@@ -23,6 +26,27 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
   );
 
   const hasActiveFilters = query.trim() !== "" || categoryId !== null;
+
+  const handleQueryChange = useCallback(
+    (value: string) => {
+      setQuery(value);
+
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+
+      debounceRef.current = setTimeout(() => {
+        if (value.trim()) {
+          posthog.capture("search_performed", {
+            query: value.trim(),
+            category_id: categoryId,
+            results_count: filterProducts(products, { query: value.trim(), categoryId }).length,
+          });
+        }
+      }, 300);
+    },
+    [posthog, categoryId, products]
+  );
 
   const clearFilters = () => {
     setQuery("");
@@ -38,7 +62,7 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
           <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Buscar productos..."
             className={cn(
               "w-full pl-10 pr-4 py-2 rounded-sm border border-outline-variant",
@@ -49,7 +73,9 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
           />
           {query && (
             <button
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+              }}
               className="absolute right-3 top-1/2 -translate-y-1/2"
               aria-label="Limpiar búsqueda"
             >

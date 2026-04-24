@@ -16,6 +16,7 @@ import {
 } from "@/lib/strapi";
 import { generateProductSchema } from "@/lib/seo";
 import { AddToPedidoButton } from "@/components/features/AddToPedidoButton";
+import { ProductViewTracker } from "@/components/features/ProductViewTracker";
 
 /*
  * PPR constraint (Next.js 16, cacheComponents: true):
@@ -59,6 +60,12 @@ async function ProductContent({ params }: ProductDetailPageProps) {
 
   return (
     <div className="mx-auto max-w-container px-4 py-8">
+      <ProductViewTracker
+        productId={product.id}
+        productName={product.name}
+        productSlug={product.slug}
+        category={product.category?.name}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}

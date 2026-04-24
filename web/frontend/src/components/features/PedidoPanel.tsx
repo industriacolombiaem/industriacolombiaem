@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils";
 import { usePedidoStore } from "@/lib/pedido-store";
+import { usePostHog } from "@posthog/next";
 import { ShoppingCart, Trash2, Send, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -14,11 +15,16 @@ export function PedidoPanel() {
   const totalItems = usePedidoStore((state) => state.totalItems);
   const totalPrice = usePedidoStore((state) => state.totalPrice);
   const sendWhatsApp = usePedidoStore((state) => state.sendWhatsApp);
+  const posthog = usePostHog();
 
   const isEmpty = items.length === 0;
 
   const handleClear = () => {
     if (window.confirm("¿Estás seguro de que quieres limpiar tu pedido?")) {
+      posthog.capture("pedido_cleared", {
+        item_count: totalItems(),
+        total_price: totalPrice(),
+      });
       clear();
     }
   };
@@ -106,7 +112,13 @@ export function PedidoPanel() {
 
                   {/* Remove item */}
                   <button
-                    onClick={() => removeItem(item.product.id)}
+                    onClick={() => {
+                      posthog.capture("product_removed_from_pedido", {
+                        product_id: item.product.id,
+                        product_name: item.product.name,
+                      });
+                      removeItem(item.product.id);
+                    }}
                     className="text-on-surface-variant hover:text-error transition-colors"
                     aria-label={`Eliminar ${item.product.name}`}
                   >
@@ -130,7 +142,14 @@ export function PedidoPanel() {
       {/* WhatsApp button — always visible, disabled when empty with tooltip */}
       <div className="relative group">
         <Button
-          onClick={sendWhatsApp}
+          onClick={() => {
+            posthog.capture("pedido_sent_whatsapp", {
+              item_count: totalItems(),
+              total_price: totalPrice(),
+              product_ids: items.map((item) => item.product.id),
+            });
+            sendWhatsApp();
+          }}
           size="lg"
           disabled={isEmpty}
           className="w-full flex items-center justify-center gap-2"

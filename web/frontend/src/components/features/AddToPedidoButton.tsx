@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePedidoStore } from "@/lib/pedido-store";
+import { usePostHog } from "@posthog/next";
 import type { Product } from "@/lib/strapi";
 import { ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -14,6 +15,7 @@ interface AddToPedidoButtonProps {
 
 export function AddToPedidoButton({ product, className }: AddToPedidoButtonProps) {
   const addItem = usePedidoStore((state) => state.addItem);
+  const posthog = usePostHog();
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
@@ -22,6 +24,11 @@ export function AddToPedidoButton({ product, className }: AddToPedidoButtonProps
       name: product.name,
       slug: product.slug,
       price: product.price,
+    });
+    posthog.capture("product_added_to_pedido", {
+      product_id: product.id,
+      product_name: product.name,
+      product_slug: product.slug,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
