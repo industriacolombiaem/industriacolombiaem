@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { PostHogProvider } from "@posthog/next";
 import type { ReactNode } from "react";
 import { ClientProviders } from "./client-providers";
@@ -19,8 +20,10 @@ export function Providers({ children }: LayoutProvidersProps) {
   }
 
   return (
-    <PostHogProvider clientOptions={{ api_host: POSTHOG_HOST }}>
-      <ClientProviders>{children}</ClientProviders>
-    </PostHogProvider>
+    <Suspense fallback={null}>
+      <PostHogProvider clientOptions={{ api_host: POSTHOG_HOST }}>
+        <ClientProviders>{children}</ClientProviders>
+      </PostHogProvider>
+    </Suspense>
   );
 }

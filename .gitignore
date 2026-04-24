@@ -44,8 +44,8 @@ web/backend/license.txt
 # Environment & Secrets
 # ==============================
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
 # ==============================
 # IDE

@@ -1,10 +1,8 @@
-"use client";
-
+import { Suspense } from "react";
 import { cn } from "@/lib/utils";
+import { CopyrightYear } from "./CopyrightYear";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="border-t border-outline-variant bg-surface mt-auto">
       <div className="mx-auto max-w-container px-4 py-8">
@@ -42,8 +40,10 @@ export function Footer() {
 
         <div className="mt-6 border-t border-outline-variant pt-4 text-center">
           <p className="text-xs text-on-surface-variant">
-            &copy; {currentYear} Industria Colombia E&M. Todos los derechos
-            reservados.
+            <Suspense fallback={null}>
+              <CopyrightYear />
+            </Suspense>{" "}
+            Industria Colombia E&M. Todos los derechos reservados.
           </p>
         </div>
       </div>
