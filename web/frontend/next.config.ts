@@ -1,18 +1,5 @@
 import type { NextConfig } from "next";
-
-const withSentry = (config: NextConfig): NextConfig => {
-  const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
-
-  if (!SENTRY_DSN) {
-    return config;
-  }
-
-  return {
-    ...config,
-    // Sentry webpack plugin configuration
-    // The @sentry/nextjs SDK automatically instruments when the config files exist
-  };
-};
+import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
@@ -26,4 +13,21 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentry(nextConfig);
+const sentryBuildOptions = {
+  org: "industria-colombia-em",
+  project: "javascript-nextjs",
+  silent: true,
+  tunnelRoute: "/api/sentry",
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
+    excludeReplayIframe: true,
+    excludeReplayShadowDom: true,
+  },
+};
+
+export default process.env.SENTRY_AUTH_TOKEN
+  ? withSentryConfig(nextConfig, sentryBuildOptions)
+  : nextConfig;
