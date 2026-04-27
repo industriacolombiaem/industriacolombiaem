@@ -23,10 +23,10 @@ export default function CategoryNotFound() {
               Ver todas las categorías
             </Link>
             <Link
-              href="/productos"
+              href="/categorias"
               className="inline-flex items-center justify-center px-6 py-3 border border-outline text-on-surface rounded-sm font-semibold uppercase tracking-section-label text-sm hover:bg-surface-container transition-colors"
             >
-              Ver productos
+              Explorar catálogo
             </Link>
           </div>
         </div>

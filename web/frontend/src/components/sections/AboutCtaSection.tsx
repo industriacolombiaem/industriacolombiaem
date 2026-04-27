@@ -19,7 +19,7 @@ export function AboutCtaSection() {
           a sus equipos con la mejor dotación industrial.
         </p>
         <Link
-          href="/productos"
+          href="/categorias"
           className={cn(
             "inline-flex items-center justify-center font-semibold tracking-section-label transition-colors",
             "bg-primary text-on-primary rounded-sm uppercase shadow-elevated hover:bg-primary-container",

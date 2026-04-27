@@ -32,16 +32,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 1,
       },
       {
-        url: `${SITE_URL}/productos`,
+        url: `${SITE_URL}/categorias`,
         lastModified: new Date(),
         changeFrequency: "daily",
         priority: 0.9,
       },
       {
-        url: `${SITE_URL}/categorias`,
+        url: `${SITE_URL}/nosotros`,
         lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: 0.8,
+        changeFrequency: "monthly",
+        priority: 0.5,
       },
       {
         url: `${SITE_URL}/pedido`,
@@ -62,16 +62,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 1,
       },
       {
-        url: `${SITE_URL}/productos`,
+        url: `${SITE_URL}/categorias`,
         lastModified: new Date(),
         changeFrequency: "daily",
         priority: 0.9,
       },
       {
-        url: `${SITE_URL}/categorias`,
+        url: `${SITE_URL}/nosotros`,
         lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: 0.8,
+        changeFrequency: "monthly",
+        priority: 0.5,
       },
     ];
   }

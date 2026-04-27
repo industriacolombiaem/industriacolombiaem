@@ -21,16 +21,6 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-6">
           <Link
-            href="/productos"
-            className={cn(
-              "text-sm font-semibold uppercase tracking-section-label",
-              "text-on-surface-variant hover:text-primary",
-              "transition-colors"
-            )}
-          >
-            Productos
-          </Link>
-          <Link
             href="/categorias"
             className={cn(
               "text-sm font-semibold uppercase tracking-section-label",
@@ -38,7 +28,7 @@ export function Header() {
               "transition-colors"
             )}
           >
-            Categorías
+            Catálogo
           </Link>
           <Link
             href="/nosotros"
@@ -51,7 +41,7 @@ export function Header() {
             Nosotros
           </Link>
           <Link
-            href="/productos"
+            href="/categorias"
             aria-label="Buscar productos"
             className={cn(
               "text-on-surface-variant hover:text-primary",

@@ -21,8 +21,8 @@ export async function GET() {
       "## Páginas principales",
       "",
       `- [Inicio](${SITE_URL})`,
-      `- [Productos](${SITE_URL}/productos)`,
-      `- [Categorías](${SITE_URL}/categorias)`,
+      `- [Catálogo](${SITE_URL}/categorias)`,
+      `- [Nosotros](${SITE_URL}/nosotros)`,
       `- [Tu Pedido](${SITE_URL}/pedido)`,
       "",
       "## Categorías",
@@ -55,8 +55,8 @@ export async function GET() {
       "## Páginas principales",
       "",
       `- [Inicio](${SITE_URL})`,
-      `- [Productos](${SITE_URL}/productos)`,
-      `- [Categorías](${SITE_URL}/categorias)`,
+      `- [Catálogo](${SITE_URL}/categorias)`,
+      `- [Nosotros](${SITE_URL}/nosotros)`,
       `- [Tu Pedido](${SITE_URL}/pedido)`,
     ];
 

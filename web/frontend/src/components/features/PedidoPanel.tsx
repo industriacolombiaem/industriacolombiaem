@@ -34,7 +34,7 @@ export function PedidoPanel() {
         <PedidoEmptyState />
         <div className="mt-6">
           <Link
-            href="/productos"
+            href="/categorias"
             className={cn(
               "inline-flex items-center justify-center gap-2 w-full",
               "bg-secondary text-on-secondary rounded-sm uppercase",
@@ -103,9 +103,9 @@ export function PedidoPanel() {
       </div>
 
       {/* Continue Shopping */}
-      <Link
-        href="/productos"
-        className={cn(
+<Link
+          href="/categorias"
+          className={cn(
           "inline-flex items-center justify-center gap-2 w-full mt-3",
           "bg-secondary text-on-secondary rounded-sm uppercase",
           "px-4 py-2 text-sm font-semibold tracking-section-label",

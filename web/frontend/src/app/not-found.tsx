@@ -17,10 +17,10 @@ export default function NotFound() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/productos"
+              href="/categorias"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-sm font-semibold uppercase tracking-section-label text-sm hover:bg-primary-container transition-colors"
             >
-              Ver Productos
+              Ver Catálogo
             </Link>
             <Link
               href="/"

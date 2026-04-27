@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/", label: "Inicio", icon: Home },
-  { href: "/productos", label: "Catálogo", icon: Package },
+  { href: "/categorias", label: "Catálogo", icon: Package },
   { href: "/nosotros", label: "Nosotros", icon: Info },
   { href: "/pedido", label: "Pedido", icon: ShoppingCart },
 ];
