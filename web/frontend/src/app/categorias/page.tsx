@@ -4,41 +4,60 @@ import { connection } from "next/server";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
-import { CategoryCard } from "@/components/features/CategoryCard";
-import { fetchAPI, type StrapiListResponse, type Category } from "@/lib/strapi";
-import { generateMetadata as genSEO } from "@/lib/seo";
+import { CatalogHeroSection } from "@/components/sections/CatalogHeroSection";
+import { BulkProcurementCTA } from "@/components/sections/BulkProcurementCTA";
+import { CatalogClient } from "@/components/features/CatalogClient";
+import { fetchAPI, type StrapiListResponse, type Product, type Category } from "@/lib/strapi";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return genSEO({
-    title: "Categorías",
-    description: "Explora nuestras categorías de productos industriales — Industria Colombia E&M",
-    path: "/categorias",
-  });
+export const metadata: Metadata = {
+  title: "Catálogo",
+  description: "Catálogo de productos industriales — Industria Colombia E&M",
+};
+
+function CatalogSkeleton() {
+  return (
+    <div className="flex flex-col gap-6">
+      {/* Search skeleton */}
+      <div className="h-10 bg-surface-container animate-pulse rounded-sm max-w-md" />
+      {/* Tabs skeleton */}
+      <div className="flex gap-2">
+        {[1, 2, 3, 4].map((i) => (
+          <div
+            key={i}
+            className="h-9 w-24 bg-surface-container animate-pulse rounded-sm"
+          />
+        ))}
+      </div>
+      {/* Grid skeleton */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div
+            key={i}
+            className="flex flex-col gap-3"
+          >
+            <div className="aspect-square bg-surface-container animate-pulse rounded-sm" />
+            <div className="h-4 w-3/4 bg-surface-container animate-pulse rounded-sm" />
+            <div className="h-3 w-1/2 bg-surface-container animate-pulse rounded-sm" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-async function CategoryList() {
+async function CatalogDataFetcher() {
   void connection();
 
-  const res = await fetchAPI<StrapiListResponse<Category>>(
-    "/api/categories?populate=*"
-  );
-
-  const categories = res.data;
-
-  if (!categories || categories.length === 0) {
-    return (
-      <p className="text-on-surface-variant text-center py-8">
-        No hay categorías disponibles todavía.
-      </p>
-    );
-  }
+  const [productsRes, categoriesRes] = await Promise.all([
+    fetchAPI<StrapiListResponse<Product>>("/api/products?populate=*"),
+    fetchAPI<StrapiListResponse<Category>>("/api/categories?populate=*"),
+  ]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {categories.map((category) => (
-        <CategoryCard key={category.id} category={category} />
-      ))}
-    </div>
+    <CatalogClient
+      products={productsRes.data}
+      categories={categoriesRes.data}
+    />
   );
 }
 
@@ -47,25 +66,13 @@ export default function CategoriasPage() {
     <>
       <Header />
       <main className="flex-1">
+        <CatalogHeroSection />
         <div className="mx-auto max-w-container px-4 py-8">
-          <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mb-8">
-            Categorías
-          </h1>
-          <Suspense
-            fallback={
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-surface-container animate-pulse rounded"
-                  />
-                ))}
-              </div>
-            }
-          >
-            <CategoryList />
+          <Suspense fallback={<CatalogSkeleton />}>
+            <CatalogDataFetcher />
           </Suspense>
         </div>
+        <BulkProcurementCTA />
       </main>
       <Footer />
       <MobileNav />

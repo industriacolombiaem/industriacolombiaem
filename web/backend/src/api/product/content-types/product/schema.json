@@ -39,6 +39,10 @@
       "type": "boolean",
       "default": false
     },
+    "sku": {
+      "type": "string",
+      "required": false
+    },
     "specifications": {
       "type": "component",
       "repeatable": true,

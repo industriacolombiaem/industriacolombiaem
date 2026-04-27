@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils";
 import { Card } from "@/components/ui/Card";
 import { Package } from "lucide-react";
+import { computeBadges } from "@/lib/badges";
+import { AddToPedidoButton } from "@/components/features/AddToPedidoButton";
 import type { Product } from "@/lib/strapi";
 import { getMediaUrl } from "@/lib/strapi";
 
@@ -14,13 +16,27 @@ interface ProductCardProps {
 
 export function ProductCard({ product, className }: ProductCardProps) {
   const primaryImage = product.images?.[0];
-  const categorySlug = product.category?.slug;
-  const categoryName = product.category?.name;
+  const badges = computeBadges(product);
 
   return (
     <Link href={`/productos/${product.slug}`}>
       <Card as="div" className={cn("flex flex-col gap-3 h-full", className)}>
-        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-sm overflow-hidden">
+        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-sm overflow-hidden relative">
+          {badges.length > 0 && (
+            <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+              {badges.map((badge) => (
+                <span
+                  key={badge.label}
+                  className={cn(
+                    "text-xs font-semibold uppercase tracking-section-label px-2 py-0.5 rounded-sm",
+                    badge.className
+                  )}
+                >
+                  {badge.label}
+                </span>
+              ))}
+            </div>
+          )}
           {primaryImage ? (
             <Image
               src={getMediaUrl(primaryImage.url)}
@@ -35,22 +51,22 @@ export function ProductCard({ product, className }: ProductCardProps) {
           )}
         </div>
 
-        <div className="flex flex-col gap-1">
-          {categoryName && categorySlug && (
-            <Link
-              href={`/categorias/${categorySlug}`}
-              onClick={(e) => e.stopPropagation()}
-              className="text-xs font-semibold uppercase tracking-section-label text-primary hover:underline"
-            >
-              {categoryName}
-            </Link>
-          )}
+        <div className="flex flex-col gap-1 flex-1">
           <h3 className="font-bold text-on-surface">{product.name}</h3>
+          {product.sku && (
+            <p className="text-xs text-on-surface-variant">
+              SKU: {product.sku}
+            </p>
+          )}
           {product.price != null && (
             <p className="text-sm text-on-surface-variant">
               {formatPrice(product.price)}
             </p>
           )}
+        </div>
+
+        <div className="mt-auto" onClick={(e) => e.stopPropagation()}>
+          <AddToPedidoButton product={product} size="sm" />
         </div>
       </Card>
     </Link>

@@ -84,6 +84,7 @@ export interface Product {
   description: RichTextBlock[] | null;
   price: number | null;
   featured: boolean;
+  sku: string | null;
   images: StrapiMedia[];
   specifications: Specification[];
   category: Category | null;

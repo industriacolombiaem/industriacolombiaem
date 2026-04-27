@@ -11,14 +11,16 @@ import { Button } from "@/components/ui/Button";
 interface AddToPedidoButtonProps {
   product: Pick<Product, "id" | "name" | "slug" | "price">;
   className?: string;
+  size?: "sm" | "md" | "lg";
 }
 
-export function AddToPedidoButton({ product, className }: AddToPedidoButtonProps) {
+export function AddToPedidoButton({ product, className, size = "md" }: AddToPedidoButtonProps) {
   const addItem = usePedidoStore((state) => state.addItem);
   const posthog = usePostHog();
   const [added, setAdded] = useState(false);
 
-  const handleAdd = () => {
+  const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     addItem({
       id: product.id,
       name: product.name,
@@ -39,6 +41,7 @@ export function AddToPedidoButton({ product, className }: AddToPedidoButtonProps
       onClick={handleAdd}
       className={cn("w-full md:w-auto", className)}
       variant={added ? "secondary" : "primary"}
+      size={size}
     >
       {added ? (
         <>

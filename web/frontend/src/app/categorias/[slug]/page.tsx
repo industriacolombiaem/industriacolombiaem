@@ -19,7 +19,7 @@ import {
  * Category name is visible in the dynamic content (H1) for users.
  */
 export const metadata = {
-  title: "Categoría",
+  title: "Categoría — Industria Colombia E&M",
   description: "Productos por categoría — Industria Colombia E&M",
 };
 
