@@ -12,21 +12,25 @@ interface AddToPedidoButtonProps {
   product: Pick<Product, "id" | "name" | "slug" | "price">;
   className?: string;
   size?: "sm" | "md" | "lg";
+  quantity?: number;
 }
 
-export function AddToPedidoButton({ product, className, size = "md" }: AddToPedidoButtonProps) {
+export function AddToPedidoButton({ product, className, size = "md", quantity }: AddToPedidoButtonProps) {
   const addItem = usePedidoStore((state) => state.addItem);
   const posthog = usePostHog();
   const [added, setAdded] = useState(false);
 
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    addItem({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      price: product.price,
-    });
+    addItem(
+      {
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        price: product.price,
+      },
+      quantity ?? 1
+    );
     posthog.capture("product_added_to_pedido", {
       product_id: product.id,
       product_name: product.name,

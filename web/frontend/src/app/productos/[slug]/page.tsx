@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { connection } from "next/server";
-import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -15,8 +14,10 @@ import {
   type Product,
 } from "@/lib/strapi";
 import { generateProductSchema } from "@/lib/seo";
-import { AddToPedidoButton } from "@/components/features/AddToPedidoButton";
+import { ProductImageGallery } from "@/components/features/ProductImageGallery";
+import { FeatureBadges } from "@/components/features/FeatureBadges";
 import { ProductViewTracker } from "@/components/features/ProductViewTracker";
+import { PDPActions } from "@/components/features/PDPActions";
 
 /*
  * PPR constraint (Next.js 16, cacheComponents: true):
@@ -59,7 +60,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
   });
 
   return (
-    <div className="mx-auto max-w-container px-4 py-8">
+    <div className="mx-auto max-w-container px-4 py-6">
       <ProductViewTracker
         productId={product.id}
         productName={product.name}
@@ -72,7 +73,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
       />
 
       {/* Breadcrumb */}
-      <nav className="mb-6 text-sm text-on-surface-variant">
+      <nav className="mb-4 text-sm text-on-surface-variant">
         <Link href="/" className="hover:text-primary transition-colors">
           Inicio
         </Link>
@@ -88,96 +89,74 @@ async function ProductContent({ params }: ProductDetailPageProps) {
           </>
         )}
         {" / "}
-        <span className="text-on-surface">{product.name}</span>
+        <span className="text-on-surface font-semibold">{product.name}</span>
       </nav>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Image gallery */}
-        <div className="flex flex-col gap-4">
-          {primaryImage ? (
-            <div className="aspect-square bg-surface-container rounded-sm overflow-hidden">
-              <Image
-                src={getMediaUrl(primaryImage.url)}
-                alt={primaryImage.alternativeText || product.name}
-                width={primaryImage.width || 600}
-                height={primaryImage.height || 600}
-                className="object-cover w-full h-full"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
-          ) : (
-            <div className="aspect-square bg-surface-container rounded-sm flex items-center justify-center">
-              <span className="text-on-surface-variant">Sin imagen</span>
-            </div>
-          )}
-          {product.images && product.images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2">
-              {product.images.slice(1).map((img) => (
-                <div
-                  key={img.id}
-                  className="aspect-square bg-surface-container rounded-sm overflow-hidden"
-                >
-                  <Image
-                    src={getMediaUrl(img.url)}
-                    alt={img.alternativeText || product.name}
-                    width={150}
-                    height={150}
-                    className="object-cover w-full h-full"
-                    sizes="150px"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+      {/* Image Gallery */}
+      <ProductImageGallery
+        images={product.images ?? []}
+        productName={product.name}
+      />
 
-        {/* Product info */}
-        <div className="flex flex-col gap-4">
-          {product.category && (
-            <Link
-              href={`/categorias/${product.category.slug}`}
-              className="text-xs font-semibold uppercase tracking-section-label text-primary hover:underline"
-            >
-              {product.category.name}
-            </Link>
-          )}
+      {/* Product Info */}
+      <div className="mt-6">
+        {/* Category Badge */}
+        {product.category && (
+          <Link
+            href={`/categorias/${product.category.slug}`}
+            className="inline-block bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-section-label hover:bg-primary/20 transition-colors"
+          >
+            {product.category.name}
+          </Link>
+        )}
 
-          <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface">
-            {product.name}
-          </h1>
+        {/* Product Name */}
+        <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mt-2">
+          {product.name}
+        </h1>
 
-          {product.price != null && (
-            <p className="text-headline-md font-bold text-primary">
-              {formatPrice(product.price)}
-            </p>
-          )}
+        {/* Price */}
+        {product.price != null && (
+          <p className="text-headline-md font-bold text-primary mt-2">
+            {formatPrice(product.price)}
+          </p>
+        )}
 
-          <AddToPedidoButton product={product} />
-
-          {product.description && (
-            <div className="mt-4">
-              <h2 className="font-bold text-on-surface mb-2">Descripción</h2>
+        {/* Description */}
+        {product.description && (
+          <div className="mt-8">
+            <h2 className="font-bold text-on-surface mb-2">Descripción</h2>
+            <div className="text-on-surface-variant text-body-md">
               <RichTextRenderer content={product.description} />
             </div>
-          )}
+          </div>
+        )}
 
-          {product.specifications && product.specifications.length > 0 && (
-            <div className="mt-4">
-              <h2 className="font-bold text-on-surface mb-2">
-                Especificaciones
-              </h2>
+        {/* Feature Badges */}
+        <FeatureBadges featured={product.featured} />
+
+        {/* Specifications */}
+        {product.specifications && product.specifications.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-xs font-semibold uppercase tracking-section-label text-on-surface-variant mb-3">
+              Especificaciones Técnicas
+            </h2>
+            <div className="rounded-sm overflow-hidden">
               <table className="w-full text-sm">
                 <tbody>
                   {product.specifications.map((spec, i) => (
                     <tr
                       key={spec.key ?? i}
-                      className="border-b border-outline-variant"
+                      className={
+                        i % 2 === 0
+                          ? "bg-surface-container-low"
+                          : "bg-surface-container"
+                      }
                     >
-                      <td className="py-2 font-semibold text-on-surface pr-4">
+                      <td className="py-3 px-4 font-semibold text-on-surface w-1/3">
                         {spec.key}
                       </td>
-                      <td className="py-2 text-on-surface-variant">
+                      <td className="py-3 px-4 text-on-surface-variant">
                         {spec.value}
                       </td>
                     </tr>
@@ -185,8 +164,11 @@ async function ProductContent({ params }: ProductDetailPageProps) {
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {/* PDP Actions: Quantity Selector + Add to Pedido */}
+        <PDPActions product={product} />
       </div>
     </div>
   );
