@@ -7,7 +7,7 @@ export function HeroSection() {
     <section className="relative flex flex-col items-center justify-center gap-6 py-24 px-4 text-center min-h-[60vh]">
       {/* Background image with dark overlay */}
       <Image
-        src="/hero-bg.png"
+        src="/hero-bg.webp"
         alt=""
         fill
         priority
