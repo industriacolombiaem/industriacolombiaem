@@ -7,7 +7,7 @@ import { AddToPedidoButton } from "./AddToPedidoButton";
 import type { Product } from "@/lib/strapi";
 
 interface PDPActionsProps {
-  product: Pick<Product, "id" | "name" | "slug" | "price">;
+  product: Pick<Product, "id" | "name" | "slug" | "price" | "images" | "category">;
 }
 
 export function PDPActions({ product }: PDPActionsProps) {

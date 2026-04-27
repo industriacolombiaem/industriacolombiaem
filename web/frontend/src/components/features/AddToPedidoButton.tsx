@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { usePedidoStore } from "@/lib/pedido-store";
+import { usePedidoStore, toPedidoProduct } from "@/lib/pedido-store";
 import { usePostHog } from "@posthog/next";
 import type { Product } from "@/lib/strapi";
 import { ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 interface AddToPedidoButtonProps {
-  product: Pick<Product, "id" | "name" | "slug" | "price">;
+  product: Pick<Product, "id" | "name" | "slug" | "price" | "images" | "category">;
   className?: string;
   size?: "sm" | "md" | "lg";
   quantity?: number;
@@ -22,15 +22,7 @@ export function AddToPedidoButton({ product, className, size = "md", quantity }:
 
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    addItem(
-      {
-        id: product.id,
-        name: product.name,
-        slug: product.slug,
-        price: product.price,
-      },
-      quantity ?? 1
-    );
+    addItem(toPedidoProduct(product), quantity ?? 1);
     posthog.capture("product_added_to_pedido", {
       product_id: product.id,
       product_name: product.name,
