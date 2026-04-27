@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Grid3X3, Package, ShoppingCart } from "lucide-react";
+import { Home, Package, Info, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/", label: "Inicio", icon: Home },
   { href: "/productos", label: "Catálogo", icon: Package },
-  { href: "/categorias", label: "Nosotros", icon: Grid3X3 },
+  { href: "/nosotros", label: "Nosotros", icon: Info },
   { href: "/pedido", label: "Pedido", icon: ShoppingCart },
 ];
 

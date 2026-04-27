@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CopyrightYear } from "./CopyrightYear";
 
@@ -15,6 +16,15 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-2">
+            <Link
+              href="/nosotros"
+              className={cn(
+                "text-sm text-on-surface-variant hover:text-primary",
+                "transition-colors"
+              )}
+            >
+              Nosotros
+            </Link>
             <a
               href="https://wa.me/573134457508"
               target="_blank"

@@ -41,6 +41,16 @@ export function Header() {
             Categorías
           </Link>
           <Link
+            href="/nosotros"
+            className={cn(
+              "text-sm font-semibold uppercase tracking-section-label",
+              "text-on-surface-variant hover:text-primary",
+              "transition-colors"
+            )}
+          >
+            Nosotros
+          </Link>
+          <Link
             href="/productos"
             aria-label="Buscar productos"
             className={cn(
