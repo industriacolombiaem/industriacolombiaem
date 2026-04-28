@@ -123,3 +123,15 @@ body {
   font-size: var(--text-body-md);
   line-height: var(--leading-body-md);
 }
+
+/*
+ * Mobile bottom safe area: the MobileNav (fixed, z-50, ~56px tall)
+ * overlays the bottom of the viewport on small screens. Without extra
+ * padding, interactive elements at the end of <main> become unreachable
+ * behind the nav bar. This rule reserves 5rem on mobile-only.
+ */
+@media (max-width: 767px) {
+  main {
+    padding-bottom: 5rem;
+  }
+}
