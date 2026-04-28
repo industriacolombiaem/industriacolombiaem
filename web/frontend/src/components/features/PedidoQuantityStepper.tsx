@@ -22,7 +22,7 @@ export function PedidoQuantityStepper({
         onClick={onDecrement}
         disabled={quantity <= 1}
         className={cn(
-          "flex items-center justify-center w-8 h-8",
+          "flex items-center justify-center w-8 h-8 rounded-full cursor-pointer",
           "text-on-surface-variant transition-colors",
           quantity <= 1
             ? "opacity-40 cursor-not-allowed"
@@ -38,7 +38,7 @@ export function PedidoQuantityStepper({
       <button
         onClick={onIncrement}
         className={cn(
-          "flex items-center justify-center w-8 h-8",
+          "flex items-center justify-center w-8 h-8 rounded-full cursor-pointer",
           "text-on-surface-variant transition-colors",
           "hover:text-on-surface hover:bg-surface-container"
         )}
