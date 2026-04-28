@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { getMediaUrl, type StrapiMedia } from "@/lib/strapi";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProductImageGalleryProps {
   images: StrapiMedia[];
@@ -13,8 +15,6 @@ export function ProductImageGallery({
   images,
   productName,
 }: ProductImageGalleryProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
   // No images — show placeholder
   if (!images || images.length === 0) {
     return (
@@ -24,49 +24,123 @@ export function ProductImageGallery({
     );
   }
 
-  const selectedImage = images[selectedIndex];
-
-  return (
-    <div>
-      {/* Hero image */}
+  // Single image — no carousel needed
+  if (images.length === 1) {
+    return (
       <div className="aspect-square bg-surface-container rounded-sm overflow-hidden">
         <Image
-          src={getMediaUrl(selectedImage.url)}
-          alt={selectedImage.alternativeText || productName}
-          width={selectedImage.width || 600}
-          height={selectedImage.height || 600}
+          src={getMediaUrl(images[0].url)}
+          alt={images[0].alternativeText || productName}
+          width={images[0].width || 600}
+          height={images[0].height || 600}
           className="object-cover w-full h-full"
           sizes="(max-width: 768px) 100vw, 50vw"
-          priority={selectedIndex === 0}
+          priority
         />
       </div>
+    );
+  }
 
-      {/* Thumbnail strip — only show if multiple images */}
-      {images.length > 1 && (
-        <div className="flex gap-2 mt-3 overflow-x-auto">
+  return <ImageCarousel images={images} productName={productName} />;
+}
+
+/**
+ * Full carousel component — only rendered when there are 2+ images.
+ * Separated to keep hooks conditional logic clean.
+ */
+function ImageCarousel({
+  images,
+  productName,
+}: {
+  images: StrapiMedia[];
+  productName: string;
+}) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+  });
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  const scrollPrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
+  return (
+    <div className="relative">
+      {/* Carousel viewport */}
+      <div className="overflow-hidden rounded-sm" ref={emblaRef}>
+        <div className="flex">
           {images.map((img, i) => (
-            <button
+            <div
               key={img.id}
-              onClick={() => setSelectedIndex(i)}
-              className={`relative w-20 h-20 rounded-sm overflow-hidden flex-shrink-0 cursor-pointer transition-all ${
-                i === selectedIndex
-                  ? "ring-2 ring-primary"
-                  : "border border-outline-variant hover:border-on-surface-variant"
-              }`}
-              aria-label={`Ver imagen ${i + 1} de ${productName}`}
+              className="flex-[0_0_100%] min-w-0"
             >
-              <Image
-                src={getMediaUrl(img.url)}
-                alt={img.alternativeText || `${productName} ${i + 1}`}
-                width={80}
-                height={80}
-                className="object-cover w-full h-full"
-                sizes="80px"
-              />
-            </button>
+              <div className="aspect-square bg-surface-container">
+                <Image
+                  src={getMediaUrl(img.url)}
+                  alt={img.alternativeText || `${productName} ${i + 1}`}
+                  width={img.width || 600}
+                  height={img.height || 600}
+                  className="object-cover w-full h-full"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={i === 0}
+                />
+              </div>
+            </div>
           ))}
         </div>
-      )}
+      </div>
+
+      {/* Prev/Next arrows — always visible */}
+      <button
+        onClick={scrollPrev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm"
+        aria-label="Imagen anterior"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <button
+        onClick={scrollNext}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm"
+        aria-label="Siguiente imagen"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-1.5 mt-3">
+        {images.map((img, i) => (
+          <button
+            key={img.id}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === selectedIndex
+                ? "bg-primary w-4"
+                : "bg-on-surface-variant/30 hover:bg-on-surface-variant/50"
+            }`}
+            aria-label={`Ir a imagen ${i + 1}`}
+            aria-current={i === selectedIndex ? "true" : undefined}
+          />
+        ))}
+      </div>
     </div>
   );
 }
