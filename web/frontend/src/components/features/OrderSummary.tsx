@@ -8,6 +8,7 @@ export function OrderSummary() {
   const totalPrice = usePedidoStore((state) => state.totalPrice);
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const hasAnyPrice = items.some((item) => item.product.price != null);
 
   return (
     <div className="border-t border-outline-variant pt-4 mt-4">
@@ -18,9 +19,11 @@ export function OrderSummary() {
         <span className="text-on-surface-variant text-sm">
           {itemCount} {itemCount === 1 ? "producto" : "productos"}
         </span>
-        <span className="font-bold text-primary text-lg">
-          {formatPrice(totalPrice())}
-        </span>
+        {hasAnyPrice && (
+          <span className="font-bold text-primary text-lg">
+            {formatPrice(totalPrice())}
+          </span>
+        )}
       </div>
     </div>
   );

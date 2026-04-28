@@ -18,7 +18,8 @@ export function CartItemCard({ product, quantity }: CartItemCardProps) {
   const updateQuantity = usePedidoStore((state) => state.updateQuantity);
   const posthog = usePostHog();
 
-  const itemTotal = (product.price ?? 0) * quantity;
+  const hasPrice = product.price != null;
+  const itemTotal = hasPrice ? product.price! * quantity : 0;
 
   return (
     <div className="flex gap-4 py-4 border-b border-outline-variant last:border-0">
@@ -63,9 +64,13 @@ export function CartItemCard({ product, quantity }: CartItemCardProps) {
 
       {/* Price + remove */}
       <div className="flex flex-col items-end justify-between">
-        <span className="font-bold text-on-surface text-sm">
-          {formatPrice(itemTotal)}
-        </span>
+        {hasPrice ? (
+          <span className="font-bold text-on-surface text-sm">
+            {formatPrice(itemTotal)}
+          </span>
+        ) : (
+          <span />
+        )}
         <button
           onClick={() => {
             posthog.capture("product_removed_from_pedido", {

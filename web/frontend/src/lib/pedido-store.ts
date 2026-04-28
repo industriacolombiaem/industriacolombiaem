@@ -146,19 +146,22 @@ export const usePedidoStore = create<PedidoState>()(
             `- ${item.product.name}${item.product.categoryName ? ` (${item.product.categoryName})` : ""} ×${item.quantity}`
         );
 
-        const total = get().totalPrice();
-        const formattedTotal = total.toLocaleString("es-CO", {
-          style: "currency",
-          currency: "COP",
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        });
+        const hasAnyPrice = items.some((item) => item.product.price != null);
 
-        const message = [
-          "¡Hola! Quisiera solicitar:",
-          ...lines,
-          `Total: ${formattedTotal}`,
-        ].join("\n");
+        const messageParts = ["¡Hola! Quisiera solicitar:", ...lines];
+
+        if (hasAnyPrice) {
+          const total = get().totalPrice();
+          const formattedTotal = total.toLocaleString("es-CO", {
+            style: "currency",
+            currency: "COP",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+          messageParts.push(`Total: ${formattedTotal}`);
+        }
+
+        const message = messageParts.join("\n");
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank", "noopener,noreferrer");
