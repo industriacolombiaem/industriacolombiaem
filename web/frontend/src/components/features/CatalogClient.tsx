@@ -59,7 +59,7 @@ export function CatalogClient({ products, categories }: CatalogClientProps) {
             onChange={(e) => handleSearchChange(e.target.value)}
             placeholder="Buscar productos..."
             className={cn(
-              "w-full pl-10 pr-4 py-2 rounded-sm border border-outline-variant",
+              "w-full pl-10 pr-4 py-2 rounded-lg border border-outline-variant",
               "bg-surface text-on-surface text-sm",
               "focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary",
               "placeholder:text-on-surface-variant"
@@ -94,7 +94,7 @@ export function CatalogClient({ products, categories }: CatalogClientProps) {
         <button
           onClick={() => setActiveCategoryId(null)}
           className={cn(
-            "px-4 py-2 rounded-sm text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
+            "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
             activeCategoryId === null
               ? "bg-primary text-on-primary"
               : "bg-surface-container text-on-surface-variant hover:bg-surface-container-highest"
@@ -107,8 +107,8 @@ export function CatalogClient({ products, categories }: CatalogClientProps) {
             key={cat.id}
             onClick={() => setActiveCategoryId(cat.id)}
             className={cn(
-              "px-4 py-2 rounded-sm text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
-              activeCategoryId === cat.id
+"px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
+            activeCategoryId === cat.id
                 ? "bg-primary text-on-primary"
                 : "bg-surface-container text-on-surface-variant hover:bg-surface-container-highest"
             )}

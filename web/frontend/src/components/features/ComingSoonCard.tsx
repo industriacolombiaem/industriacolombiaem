@@ -3,7 +3,7 @@ import { Clock } from "lucide-react";
 export function ComingSoonCard() {
   return (
     <div
-      className="flex flex-col items-center justify-center gap-3 rounded-sm border-dashed border-2 border-outline-variant bg-surface p-4 opacity-60 aspect-square"
+      className="flex flex-col items-center justify-center gap-3 rounded-xl border-dashed border-2 border-outline-variant bg-surface p-4 opacity-60 aspect-square"
       role="complementary"
       aria-label="Próximamente"
     >

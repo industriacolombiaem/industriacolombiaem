@@ -18,13 +18,13 @@ export default function CategoryNotFound() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/categorias"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-sm font-semibold uppercase tracking-section-label text-sm hover:bg-primary-container transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-primary-container transition-colors"
             >
               Ver todas las categorías
             </Link>
             <Link
               href="/categorias"
-              className="inline-flex items-center justify-center px-6 py-3 border border-outline text-on-surface rounded-sm font-semibold uppercase tracking-section-label text-sm hover:bg-surface-container transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 border border-outline text-on-surface rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-surface-container transition-colors"
             >
               Explorar catálogo
             </Link>

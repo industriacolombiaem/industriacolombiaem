@@ -18,7 +18,7 @@ export function ProductImageGallery({
   // No images — show placeholder
   if (!images || images.length === 0) {
     return (
-      <div className="aspect-square bg-surface-container rounded-sm flex items-center justify-center">
+      <div className="aspect-square bg-surface-container rounded-lg flex items-center justify-center">
         <span className="text-on-surface-variant">Sin imagen</span>
       </div>
     );
@@ -27,7 +27,7 @@ export function ProductImageGallery({
   // Single image — no carousel needed
   if (images.length === 1) {
     return (
-      <div className="aspect-square bg-surface-container rounded-sm overflow-hidden">
+      <div className="aspect-square bg-surface-container rounded-lg overflow-hidden">
         <Image
           src={getMediaUrl(images[0].url)}
           alt={images[0].alternativeText || productName}
@@ -86,7 +86,7 @@ function ImageCarousel({
   return (
     <div className="relative">
       {/* Carousel viewport */}
-      <div className="overflow-hidden rounded-sm" ref={emblaRef}>
+      <div className="overflow-hidden rounded-lg" ref={emblaRef}>
         <div className="flex">
           {images.map((img, i) => (
             <div

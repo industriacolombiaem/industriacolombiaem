@@ -26,7 +26,7 @@ export function CertificationsSection() {
             return (
               <div
                 key={cert.name}
-                className="flex flex-col items-center gap-3 rounded-sm border border-outline-variant bg-surface p-6 text-center"
+                className="flex flex-col items-center gap-3 rounded-xl border border-outline-variant bg-surface p-6 text-center"
               >
                 <Icon className="h-10 w-10 text-primary" />
                 <h3 className="font-bold text-on-surface">{cert.name}</h3>

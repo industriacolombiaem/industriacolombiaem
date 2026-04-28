@@ -37,7 +37,7 @@ export function PedidoPanel() {
             href="/categorias"
             className={cn(
               "inline-flex items-center justify-center gap-2 w-full",
-              "bg-secondary text-on-secondary rounded-sm uppercase",
+              "bg-secondary text-on-secondary rounded-lg uppercase",
               "px-4 py-2 text-sm font-semibold tracking-section-label",
               "hover:bg-secondary/90 transition-colors"
             )}
@@ -107,8 +107,8 @@ export function PedidoPanel() {
           href="/categorias"
           className={cn(
           "inline-flex items-center justify-center gap-2 w-full mt-3",
-          "bg-secondary text-on-secondary rounded-sm uppercase",
-          "px-4 py-2 text-sm font-semibold tracking-section-label",
+"bg-secondary text-on-secondary rounded-lg uppercase",
+           "px-4 py-2 text-sm font-semibold tracking-section-label",
           "hover:bg-secondary/90 transition-colors"
         )}
       >

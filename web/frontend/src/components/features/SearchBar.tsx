@@ -65,7 +65,7 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
             onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Buscar productos..."
             className={cn(
-              "w-full pl-10 pr-4 py-2 rounded-sm border border-outline-variant",
+              "w-full pl-10 pr-4 py-2 rounded-lg border border-outline-variant",
               "bg-surface text-on-surface text-sm",
               "focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary",
               "placeholder:text-on-surface-variant"
@@ -88,7 +88,7 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
           value={categoryId ?? ""}
           onChange={(e) => setCategoryId(e.target.value ? Number(e.target.value) : null)}
           className={cn(
-            "px-4 py-2 rounded-sm border border-outline-variant",
+            "px-4 py-2 rounded-lg border border-outline-variant",
             "bg-surface text-on-surface text-sm",
             "focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           )}

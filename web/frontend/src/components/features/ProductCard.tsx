@@ -27,7 +27,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
        * and fixes mobile browsers ignoring button taps in favor of link navigation.
        */}
       <Link href={`/productos/${product.slug}`} className="group">
-        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-sm overflow-hidden relative">
+        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-lg overflow-hidden relative">
           {badges.length > 0 && (
             <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
               {badges.map((badge) => (

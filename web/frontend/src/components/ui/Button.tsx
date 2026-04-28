@@ -8,11 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles = {
   primary:
-    "bg-primary text-on-primary rounded-sm uppercase shadow-elevated hover:bg-primary-container",
+    "bg-primary text-on-primary rounded-lg uppercase shadow-elevated hover:bg-primary-container",
   secondary:
-    "bg-secondary text-on-secondary rounded-sm uppercase hover:bg-secondary/90",
+    "bg-secondary text-on-secondary rounded-lg uppercase hover:bg-secondary/90",
   outline:
-    "border border-outline text-on-surface rounded-sm uppercase hover:bg-surface-container",
+    "border border-outline text-on-surface rounded-lg uppercase hover:bg-surface-container",
 } as const;
 
 const sizeStyles = {

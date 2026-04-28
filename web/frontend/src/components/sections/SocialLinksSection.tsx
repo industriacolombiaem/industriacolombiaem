@@ -44,7 +44,7 @@ export function SocialLinksSection() {
                 rel="noopener noreferrer"
                 aria-label={link.label}
                 className={cn(
-                  "group flex flex-col items-center gap-2 rounded-sm border border-outline-variant",
+                  "group flex flex-col items-center gap-2 rounded-xl border border-outline-variant",
                   "bg-surface p-6 transition-colors",
                   "hover:border-primary hover:bg-surface-container-highest",
                   "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

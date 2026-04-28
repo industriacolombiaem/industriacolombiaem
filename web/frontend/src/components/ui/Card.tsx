@@ -14,7 +14,7 @@ export function Card({
   return (
     <Component
       className={cn(
-        "bg-surface border border-outline-variant rounded-sm p-4",
+        "bg-surface border border-outline-variant rounded-xl p-4",
         "transition-shadow hover:shadow-elevated",
         className
       )}

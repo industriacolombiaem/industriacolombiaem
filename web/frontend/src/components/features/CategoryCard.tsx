@@ -17,7 +17,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
   return (
     <Link href={`/categorias/${category.slug}`}>
       <Card as="div" className={cn("flex flex-col gap-3 bg-[#F5F5F7] h-full", className)}>
-        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-sm overflow-hidden">
+        <div className="aspect-square bg-surface-container flex items-center justify-center rounded-lg overflow-hidden">
           {category.image ? (
             <Image
               src={getMediaUrl(category.image.url)}

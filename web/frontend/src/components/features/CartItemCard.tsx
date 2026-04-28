@@ -24,7 +24,7 @@ export function CartItemCard({ product, quantity }: CartItemCardProps) {
   return (
     <div className="flex gap-4 py-4 border-b border-outline-variant last:border-0">
       {/* Product thumbnail */}
-      <div className="w-20 h-20 flex-shrink-0 bg-surface-container rounded-sm overflow-hidden relative">
+      <div className="w-20 h-20 flex-shrink-0 bg-surface-container rounded-lg overflow-hidden relative">
         {product.image ? (
           <Image
             src={product.image}
