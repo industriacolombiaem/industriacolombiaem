@@ -90,7 +90,8 @@ export function SearchBar({ products, categories, className }: SearchBarProps) {
           className={cn(
             "px-4 py-2 rounded-lg border border-outline-variant",
             "bg-surface text-on-surface text-sm",
-            "focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            "focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary",
+            "active:scale-50 transition"
           )}
         >
           <option value="">Todas las categorías</option>

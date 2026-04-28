@@ -94,7 +94,7 @@ export function CatalogClient({ products, categories }: CatalogClientProps) {
         <button
           onClick={() => setActiveCategoryId(null)}
           className={cn(
-            "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
+            "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition active:scale-50",
             activeCategoryId === null
               ? "bg-primary text-on-primary"
               : "bg-surface-container text-on-surface-variant hover:bg-surface-container-highest"
@@ -106,9 +106,9 @@ export function CatalogClient({ products, categories }: CatalogClientProps) {
           <button
             key={cat.id}
             onClick={() => setActiveCategoryId(cat.id)}
-            className={cn(
-"px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition-colors",
-            activeCategoryId === cat.id
+className={cn(
+              "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-section-label whitespace-nowrap transition active:scale-50",
+              activeCategoryId === cat.id
                 ? "bg-primary text-on-primary"
                 : "bg-surface-container text-on-surface-variant hover:bg-surface-container-highest"
             )}

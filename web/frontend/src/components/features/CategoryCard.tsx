@@ -15,7 +15,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
   const productCount = category.products?.length ?? 0;
 
   return (
-    <Link href={`/categorias/${category.slug}`}>
+    <Link href={`/categorias/${category.slug}`} className="block active:scale-50 transition-transform">
       <Card as="div" className={cn("flex flex-col gap-3 bg-[#F5F5F7] h-full", className)}>
         <div className="aspect-square bg-surface-container flex items-center justify-center rounded-lg overflow-hidden">
           {category.image ? (

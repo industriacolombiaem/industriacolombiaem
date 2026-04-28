@@ -32,7 +32,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center font-semibold tracking-section-label transition-colors",
+        "inline-flex items-center justify-center font-semibold tracking-section-label transition active:scale-50",
         "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
         variantStyles[variant],
         sizeStyles[size],

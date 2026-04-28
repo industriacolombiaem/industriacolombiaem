@@ -23,7 +23,7 @@ export function PedidoQuantityStepper({
         disabled={quantity <= 1}
         className={cn(
           "flex items-center justify-center w-9 h-9 min-h-11 min-w-11 rounded-full cursor-pointer",
-          "text-on-surface-variant transition-colors",
+          "text-on-surface-variant transition active:scale-50",
           quantity <= 1
             ? "opacity-40 cursor-not-allowed"
             : "hover:text-on-surface hover:bg-surface-container"
@@ -39,7 +39,7 @@ export function PedidoQuantityStepper({
         onClick={onIncrement}
         className={cn(
           "flex items-center justify-center w-9 h-9 min-h-11 min-w-11 rounded-full cursor-pointer",
-          "text-on-surface-variant transition-colors",
+          "text-on-surface-variant transition active:scale-50",
           "hover:text-on-surface hover:bg-surface-container"
         )}
         aria-label="Aumentar cantidad"
