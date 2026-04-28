@@ -4,6 +4,7 @@
 .DS_Store
 *.pem
 .atl/
+imgs-catalog/
 
 # ==============================
 # Node.js (shared)
