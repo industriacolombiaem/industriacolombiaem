@@ -14,7 +14,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-site items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 active:scale-50 transition-transform">
+        <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform">
           <Image
             src="/logo.png"
             alt="Industria E&M"
@@ -31,7 +31,7 @@ export function Header() {
             className={cn(
               "text-sm font-semibold uppercase tracking-section-label",
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-50"
+              "transition active:scale-95"
             )}
           >
             Catálogo
@@ -41,7 +41,7 @@ export function Header() {
             className={cn(
               "text-sm font-semibold uppercase tracking-section-label",
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-50"
+              "transition active:scale-95"
             )}
           >
             Nosotros
@@ -51,7 +51,7 @@ export function Header() {
             aria-label="Buscar productos"
             className={cn(
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-50"
+              "transition active:scale-95"
             )}
           >
             <Search className="h-5 w-5" />

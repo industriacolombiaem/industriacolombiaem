@@ -39,7 +39,7 @@ export function PedidoPanel() {
               "inline-flex items-center justify-center gap-2 w-full",
               "bg-secondary text-on-secondary rounded-lg uppercase",
               "px-4 py-2 text-sm font-semibold tracking-section-label",
-              "hover:bg-secondary/90 transition active:scale-50"
+              "hover:bg-secondary/90 transition active:scale-95"
             )}
           >
             <ArrowLeft className="h-4 w-4" />
@@ -109,7 +109,7 @@ export function PedidoPanel() {
           "inline-flex items-center justify-center gap-2 w-full mt-3",
 "bg-secondary text-on-secondary rounded-lg uppercase",
            "px-4 py-2 text-sm font-semibold tracking-section-label",
-           "hover:bg-secondary/90 transition active:scale-50"
+           "hover:bg-secondary/90 transition active:scale-95"
         )}
       >
         <ArrowLeft className="h-4 w-4" />

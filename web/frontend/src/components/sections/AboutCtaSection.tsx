@@ -21,7 +21,7 @@ export function AboutCtaSection() {
         <Link
           href="/categorias"
           className={cn(
-            "inline-flex items-center justify-center font-semibold tracking-section-label transition active:scale-50",
+            "inline-flex items-center justify-center font-semibold tracking-section-label transition active:scale-95",
             "bg-primary text-on-primary rounded-lg uppercase shadow-elevated hover:bg-primary-container",
             "px-8 py-3 text-base",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

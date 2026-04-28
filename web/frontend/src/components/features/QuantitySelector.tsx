@@ -34,7 +34,7 @@ export function QuantitySelector({
         onClick={decrement}
         disabled={quantity <= 1}
         className={cn(
-          "border border-outline-variant rounded-lg p-3 transition active:scale-50",
+          "border border-outline-variant rounded-lg p-3 transition active:scale-95",
           "min-h-11 min-w-11 flex items-center justify-center",
           quantity <= 1
             ? "opacity-50 cursor-not-allowed"
@@ -50,7 +50,7 @@ export function QuantitySelector({
       <button
         onClick={increment}
         className={cn(
-          "border border-outline-variant rounded-lg p-3 transition active:scale-50",
+          "border border-outline-variant rounded-lg p-3 transition active:scale-95",
           "min-h-11 min-w-11 flex items-center justify-center",
           "hover:bg-surface-container"
         )}

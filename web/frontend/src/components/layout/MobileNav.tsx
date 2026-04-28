@@ -34,7 +34,7 @@ export function MobileNav() {
               href={item.href}
               className={cn(
                 "flex flex-col items-center gap-1 px-3 py-1",
-                "transition active:scale-50",
+                "transition active:scale-95",
                 isActive
                   ? "text-primary"
                   : "text-on-surface-variant hover:text-primary"

@@ -18,13 +18,13 @@ export default function ProductNotFound() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/categorias"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-primary-container transition active:scale-50"
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-primary-container transition active:scale-95"
             >
               Ver catálogo
             </Link>
             <Link
               href="/categorias"
-              className="inline-flex items-center justify-center px-6 py-3 border border-outline text-on-surface rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-surface-container transition active:scale-50"
+              className="inline-flex items-center justify-center px-6 py-3 border border-outline text-on-surface rounded-lg font-semibold uppercase tracking-section-label text-sm hover:bg-surface-container transition active:scale-95"
             >
               Explorar categorías
             </Link>

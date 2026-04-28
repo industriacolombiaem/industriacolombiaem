@@ -74,7 +74,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
 
       {/* Breadcrumb */}
       <nav className="mb-4 text-sm text-on-surface-variant">
-        <Link href="/" className="hover:text-primary transition active:scale-50">
+        <Link href="/" className="hover:text-primary transition active:scale-95">
           Inicio
         </Link>
         {product.category && (
@@ -82,7 +82,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
             {" / "}
             <Link
               href={`/categorias/${product.category.slug}`}
-              className="hover:text-primary transition active:scale-50"
+              className="hover:text-primary transition active:scale-95"
             >
               {product.category.name}
             </Link>
@@ -104,7 +104,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
         {product.category && (
           <Link
             href={`/categorias/${product.category.slug}`}
-            className="inline-block bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-section-label hover:bg-primary/20 transition active:scale-50"
+            className="inline-block bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-section-label hover:bg-primary/20 transition active:scale-95"
           >
             {product.category.name}
           </Link>
