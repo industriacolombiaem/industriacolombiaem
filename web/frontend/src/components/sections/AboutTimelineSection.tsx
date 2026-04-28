@@ -34,7 +34,7 @@ export function AboutTimelineSection() {
       className="py-16 px-4 bg-surface-container"
       aria-labelledby="about-timeline-heading"
     >
-      <div className="mx-auto max-w-container">
+      <div className="mx-auto max-w-site">
         <span className="text-xs font-semibold uppercase tracking-section-label text-primary mb-2 block">
           Nuestra Trayectoria
         </span>

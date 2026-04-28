@@ -97,7 +97,7 @@ export default function HomePage() {
 
         <HeroSection />
 
-        <div className="mx-auto max-w-container px-4 pb-12">
+        <div className="mx-auto max-w-site px-4 pb-12">
           <Suspense
             fallback={
               <div className="h-64 bg-surface-container animate-pulse rounded" />

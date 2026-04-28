@@ -61,7 +61,7 @@
   --shadow-elevated: 0 4px 20px rgba(28, 28, 30, 0.2);
 
   /* Spacing */
-  --container-max: 768px;
+  --container-site: 1024px;
 
   --background: var(--color-background);
   --foreground: var(--color-on-surface);
@@ -113,7 +113,7 @@
 
   --shadow-elevated: var(--shadow-elevated);
 
-  --container-max: var(--container-max);
+  --container-site: var(--container-site);
 }
 
 body {

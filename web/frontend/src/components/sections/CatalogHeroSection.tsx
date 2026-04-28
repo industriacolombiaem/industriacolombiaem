@@ -7,10 +7,10 @@ export function CatalogHeroSection() {
         aria-hidden="true"
       />
 
-      <h1 className="font-display-xl text-display-xl font-bold leading-tight tracking-display-xl text-white max-w-container">
+      <h1 className="font-display-xl text-display-xl font-bold leading-tight tracking-display-xl text-white max-w-site">
         Catálogo
       </h1>
-      <p className="text-white/90 max-w-container text-lg">
+      <p className="text-white/90 max-w-site text-lg">
         Dotación Industrial de Alta Calidad
       </p>
     </section>

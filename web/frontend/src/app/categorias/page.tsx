@@ -67,7 +67,7 @@ export default function CategoriasPage() {
       <Header />
       <main className="flex-1">
         <CatalogHeroSection />
-        <div className="mx-auto max-w-container px-4 py-8">
+        <div className="mx-auto max-w-site px-4 py-8">
           <Suspense fallback={<CatalogSkeleton />}>
             <CatalogDataFetcher />
           </Suspense>

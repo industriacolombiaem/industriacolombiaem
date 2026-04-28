@@ -16,7 +16,7 @@ const CERTIFICATIONS: Certification[] = [
 export function CertificationsSection() {
   return (
     <section className="py-16 px-4">
-      <div className="mx-auto max-w-container">
+      <div className="mx-auto max-w-site">
         <h2 className="font-display-xl text-headline-md font-bold tracking-headline-md text-on-surface mb-8 text-center">
           Certificaciones Premium
         </h2>

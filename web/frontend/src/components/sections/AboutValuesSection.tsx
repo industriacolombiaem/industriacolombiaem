@@ -35,7 +35,7 @@ export function AboutValuesSection() {
       className="py-16 px-4"
       aria-labelledby="about-values-heading"
     >
-      <div className="mx-auto max-w-container">
+      <div className="mx-auto max-w-site">
         <span className="text-xs font-semibold uppercase tracking-section-label text-primary mb-2 block">
           Nuestros Valores
         </span>

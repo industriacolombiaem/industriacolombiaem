@@ -6,7 +6,7 @@ import { CopyrightYear } from "./CopyrightYear";
 export function Footer() {
   return (
     <footer className="border-t border-outline-variant bg-surface mt-auto">
-      <div className="mx-auto max-w-container px-4 py-8">
+      <div className="mx-auto max-w-site px-4 py-8">
         <div className="flex flex-col gap-4 md:flex-row md:justify-between">
           <div>
             <p className="font-bold text-on-surface">Industria Colombia E&M</p>

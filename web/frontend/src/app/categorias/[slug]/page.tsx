@@ -44,7 +44,7 @@ async function CategoryContent({ params }: CategoryPageProps) {
   const products = category.products ?? [];
 
   return (
-    <div className="mx-auto max-w-container px-4 py-8">
+    <div className="mx-auto max-w-site px-4 py-8">
       {/* Category info */}
       <div className="mb-8">
         <span className="text-xs font-semibold uppercase tracking-section-label text-primary">
@@ -84,7 +84,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <main className="flex-1">
         <Suspense
           fallback={
-            <div className="mx-auto max-w-container px-4 py-8">
+            <div className="mx-auto max-w-site px-4 py-8">
               <div className="h-8 w-48 bg-surface-container animate-pulse rounded" />
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3].map((i) => (

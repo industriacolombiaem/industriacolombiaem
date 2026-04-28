@@ -20,10 +20,10 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      <h1 className="font-display-xl text-display-xl font-bold leading-tight tracking-display-xl text-white max-w-container">
+      <h1 className="font-display-xl text-display-xl font-bold leading-tight tracking-display-xl text-white max-w-site">
         Industria Colombia E&amp;M
       </h1>
-      <p className="text-white/90 max-w-container text-lg">
+      <p className="text-white/90 max-w-site text-lg">
         Dotación industrial de alta calidad
       </p>
       <Link

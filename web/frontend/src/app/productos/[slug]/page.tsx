@@ -60,7 +60,7 @@ async function ProductContent({ params }: ProductDetailPageProps) {
   });
 
   return (
-    <div className="mx-auto max-w-container px-4 py-6">
+    <div className="mx-auto max-w-site px-4 py-6">
       <ProductViewTracker
         productId={product.id}
         productName={product.name}
@@ -184,7 +184,7 @@ export default async function ProductDetailPage({
       <main className="flex-1">
         <Suspense
           fallback={
-            <div className="mx-auto max-w-container px-4 py-8">
+            <div className="mx-auto max-w-site px-4 py-8">
               <div className="h-8 w-48 bg-surface-container animate-pulse rounded" />
             </div>
           }

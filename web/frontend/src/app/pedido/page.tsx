@@ -17,7 +17,7 @@ export default function PedidoPage() {
     <>
       <Header />
       <main className="flex-1">
-        <div className="mx-auto max-w-container px-4 py-8">
+        <div className="mx-auto max-w-site px-4 py-8">
           {/* Breadcrumb */}
           <nav className="mb-4 text-sm text-on-surface-variant">
             <Link href="/" className="hover:text-primary transition-colors">

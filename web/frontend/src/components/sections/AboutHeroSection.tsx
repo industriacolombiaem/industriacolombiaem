@@ -25,11 +25,11 @@ export function AboutHeroSection() {
       </span>
       <h1
         id="about-hero-heading"
-        className="font-display-xl text-display-xl font-bold tracking-display-xl text-white max-w-container"
+        className="font-display-xl text-display-xl font-bold tracking-display-xl text-white max-w-site"
       >
         Seguridad como Ciencia.
       </h1>
-      <p className="text-white/90 max-w-container text-base leading-relaxed">
+      <p className="text-white/90 max-w-site text-base leading-relaxed">
         En Industria Colombia E&M no solo distribuimos dotación industrial —
         protegemos al trabajador colombiano con estándares de seguridad que
         cumplen y superan las normativas vigentes.

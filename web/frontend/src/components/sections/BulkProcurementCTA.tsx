@@ -3,7 +3,7 @@ import { ShieldCheck, Cog } from "lucide-react";
 export function BulkProcurementCTA() {
   return (
     <section className="py-16 px-4 bg-surface-container">
-      <div className="mx-auto max-w-container text-center">
+      <div className="mx-auto max-w-site text-center">
         <h2 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface">
           Compra Corporativa
         </h2>

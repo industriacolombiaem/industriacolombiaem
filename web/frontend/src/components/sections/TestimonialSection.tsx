@@ -12,7 +12,7 @@ export function TestimonialSection() {
 
   return (
     <section className="bg-surface-container py-16 px-4">
-      <div className="mx-auto max-w-container flex flex-col items-center gap-6 text-center">
+      <div className="mx-auto max-w-site flex flex-col items-center gap-6 text-center">
         <Quote className="h-10 w-10 text-primary/60" />
         <blockquote className="max-w-2xl text-lg italic text-on-surface leading-relaxed">
           &ldquo;{TESTIMONIAL.quote}&rdquo;

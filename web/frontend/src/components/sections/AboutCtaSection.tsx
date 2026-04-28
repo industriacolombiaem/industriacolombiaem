@@ -7,7 +7,7 @@ export function AboutCtaSection() {
       className="py-16 px-4 bg-surface-container"
       aria-labelledby="about-cta-heading"
     >
-      <div className="mx-auto max-w-container text-center">
+      <div className="mx-auto max-w-site text-center">
         <h2
           id="about-cta-heading"
           className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mb-4"
