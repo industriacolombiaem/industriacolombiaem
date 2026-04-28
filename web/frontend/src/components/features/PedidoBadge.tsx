@@ -46,7 +46,7 @@ export function HeaderPedidoLink() {
         "relative flex items-center gap-1.5",
         "text-sm font-semibold uppercase tracking-section-label",
         "text-on-surface-variant hover:text-primary",
-        "transition-colors"
+        "transition active:scale-50"
       )}
     >
       <ShoppingCart className="h-4 w-4" />

@@ -27,7 +27,7 @@ export function Footer() {
               href="/nosotros"
               className={cn(
                 "text-sm text-on-surface-variant hover:text-primary",
-                "transition-colors"
+                "transition active:scale-50"
               )}
             >
               Nosotros
@@ -38,7 +38,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className={cn(
                 "text-sm text-on-surface-variant hover:text-primary",
-                "transition-colors"
+                "transition active:scale-50"
               )}
             >
               WhatsApp
@@ -47,7 +47,7 @@ export function Footer() {
               href="mailto:info@industriacolombiaem.com"
               className={cn(
                 "text-sm text-on-surface-variant hover:text-primary",
-                "transition-colors"
+                "transition active:scale-50"
               )}
             >
               info@industriacolombiaem.com
@@ -63,7 +63,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 className={cn(
-                  "text-on-surface-variant hover:text-primary transition-colors"
+                  "text-on-surface-variant hover:text-primary transition active:scale-50"
                 )}
               >
                 <InstagramIcon className="h-5 w-5" />
@@ -74,7 +74,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Facebook"
                 className={cn(
-                  "text-on-surface-variant hover:text-primary transition-colors"
+                  "text-on-surface-variant hover:text-primary transition active:scale-50"
                 )}
               >
                 <FacebookIcon className="h-5 w-5" />

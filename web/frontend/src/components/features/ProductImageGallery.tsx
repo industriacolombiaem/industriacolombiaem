@@ -112,14 +112,14 @@ function ImageCarousel({
       {/* Prev/Next arrows — always visible */}
       <button
         onClick={scrollPrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition active:scale-50 shadow-sm"
         aria-label="Imagen anterior"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
       <button
         onClick={scrollNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-surface/80 backdrop-blur-sm border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface transition active:scale-50 shadow-sm"
         aria-label="Siguiente imagen"
       >
         <ChevronRight className="w-5 h-5" />
@@ -131,7 +131,7 @@ function ImageCarousel({
           <button
             key={img.id}
             onClick={() => emblaApi?.scrollTo(i)}
-            className={`w-2 h-2 rounded-full transition-all ${
+            className={`w-2 h-2 rounded-full transition-all active:scale-50 ${
               i === selectedIndex
                 ? "bg-primary w-4"
                 : "bg-on-surface-variant/30 hover:bg-on-surface-variant/50"

@@ -17,7 +17,7 @@ export function WhatsAppFab() {
         "flex items-center justify-center",
         "h-14 w-14 rounded-full",
         "bg-[#25D366] text-white shadow-lg",
-        "hover:scale-110 hover:shadow-xl",
+        "hover:scale-110 hover:shadow-xl active:scale-50",
         "transition-all duration-200",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
       )}

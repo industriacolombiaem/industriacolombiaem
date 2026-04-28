@@ -20,7 +20,7 @@ export default function PedidoPage() {
         <div className="mx-auto max-w-site px-4 py-8">
           {/* Breadcrumb */}
           <nav className="mb-4 text-sm text-on-surface-variant">
-            <Link href="/" className="hover:text-primary transition-colors">
+            <Link href="/" className="hover:text-primary transition active:scale-50">
               Inicio
             </Link>
             {" / "}

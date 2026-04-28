@@ -80,7 +80,7 @@ export function CartItemCard({ product, quantity }: CartItemCardProps) {
             removeItem(product.id);
           }}
           className={cn(
-            "text-on-surface-variant hover:text-error transition-colors",
+            "text-on-surface-variant hover:text-error transition active:scale-50",
             "p-1"
           )}
           aria-label={`Eliminar ${product.name}`}
