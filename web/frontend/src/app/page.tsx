@@ -62,7 +62,7 @@ async function CategoryGrid() {
   if (!categories || categories.length === 0) return null;
 
   return (
-    <section className="mb-12">
+    <section className="mt-12 mb-12">
       <div className="flex items-center justify-between mb-6">
         <h2 className="font-display-xl text-headline-md font-bold tracking-headline-md text-on-surface">
           Categorías
