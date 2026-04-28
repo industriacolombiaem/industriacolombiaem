@@ -37,13 +37,13 @@ export function Footer() {
               WhatsApp
             </a>
             <a
-              href="mailto:info@industriaeym.com"
+              href="mailto:info@industriacolombiaem.com"
               className={cn(
                 "text-sm text-on-surface-variant hover:text-primary",
                 "transition-colors"
               )}
             >
-              info@industriaeym.com
+              info@industriacolombiaem.com
             </a>
           </div>
         </div>

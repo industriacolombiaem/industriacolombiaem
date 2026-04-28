@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://industriaeym.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://industriacolombiaem.com"
   ),
 };
 

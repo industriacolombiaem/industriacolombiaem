@@ -16,7 +16,7 @@ The site is a **catalog with WhatsApp-based ordering**. There is NO shopping car
 - CMS admin panel: manage products, categories, images
 - SEO: Schema.org (Product, Organization), sitemap, robots.txt, llms.txt en raíz
 - Analytics (PostHog) + error monitoring (Sentry)
-- Domain registration + SSL (first year) — domain via Porkbun (`industriaeym.com` or `industriacolombiaeym.com`, TBD)
+- Domain registration + SSL (first year) — domain via Porkbun (`industriacolombiaem.com`)
 - 2 corporate email accounts on Zoho Mail: `info@[dominio]` and `michael@[dominio]`
 - Production deployment with custom domain
 - CMS usage guide + 1-hour training session

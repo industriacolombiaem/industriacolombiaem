@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchAPI, type StrapiListResponse, type Product, type Category } from "@/lib/strapi";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://industriaeym.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://industriacolombiaem.com";
 
 export async function GET() {
   try {

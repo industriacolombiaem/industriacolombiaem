@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Product } from "./strapi";
 
 const SITE_NAME = "Industria Colombia E&M";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://industriaeym.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://industriacolombiaem.com";
 const WHATSAPP_NUMBER = "573134457508";
 
 interface SEOParams {
