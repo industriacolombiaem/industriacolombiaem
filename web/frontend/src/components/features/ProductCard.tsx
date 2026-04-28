@@ -19,8 +19,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const badges = computeBadges(product);
 
   return (
-    <Link href={`/productos/${product.slug}`}>
-      <Card as="div" className={cn("flex flex-col gap-3 h-full", className)}>
+    <Card as="article" className={cn("flex flex-col gap-3 h-full", className)}>
+      {/*
+       * The clickable area is ONLY the image + text section.
+       * The "Agregar al pedido" button is a SEPARATE interactive element,
+       * NOT nested inside the Link. This avoids invalid HTML (button inside a)
+       * and fixes mobile browsers ignoring button taps in favor of link navigation.
+       */}
+      <Link href={`/productos/${product.slug}`} className="group">
         <div className="aspect-square bg-surface-container flex items-center justify-center rounded-sm overflow-hidden relative">
           {badges.length > 0 && (
             <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
@@ -43,7 +49,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
               alt={primaryImage.alternativeText || product.name}
               width={primaryImage.width || 400}
               height={primaryImage.height || 400}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full group-hover:scale-[1.02] transition-transform"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
@@ -51,8 +57,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
           )}
         </div>
 
-        <div className="flex flex-col gap-1 flex-1">
-          <h3 className="font-bold text-on-surface">{product.name}</h3>
+        <div className="flex flex-col gap-1 flex-1 mt-3">
+          <h3 className="font-bold text-on-surface group-hover:text-primary transition-colors">
+            {product.name}
+          </h3>
           {product.sku && (
             <p className="text-xs text-on-surface-variant">
               SKU: {product.sku}
@@ -64,11 +72,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
             </p>
           )}
         </div>
+      </Link>
 
-        <div className="mt-auto" onClick={(e) => e.stopPropagation()}>
-          <AddToPedidoButton product={product} size="sm" />
-        </div>
-      </Card>
-    </Link>
+      <div className="mt-auto">
+        <AddToPedidoButton product={product} size="sm" />
+      </div>
+    </Card>
   );
 }

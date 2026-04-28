@@ -34,7 +34,8 @@ export function QuantitySelector({
         onClick={decrement}
         disabled={quantity <= 1}
         className={cn(
-          "border border-outline-variant rounded-sm p-2 transition-colors",
+          "border border-outline-variant rounded-sm p-3 transition-colors",
+          "min-h-11 min-w-11 flex items-center justify-center",
           quantity <= 1
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-surface-container"
@@ -48,7 +49,11 @@ export function QuantitySelector({
       </span>
       <button
         onClick={increment}
-        className="border border-outline-variant rounded-sm p-2 transition-colors hover:bg-surface-container"
+        className={cn(
+          "border border-outline-variant rounded-sm p-3 transition-colors",
+          "min-h-11 min-w-11 flex items-center justify-center",
+          "hover:bg-surface-container"
+        )}
         aria-label="Aumentar cantidad"
       >
         <Plus className="h-4 w-4" />
