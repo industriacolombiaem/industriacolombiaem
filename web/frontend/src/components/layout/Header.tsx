@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HeaderPedidoLink } from "@/components/features/PedidoBadge";
@@ -12,11 +13,16 @@ export function Header() {
         "border-b border-outline-variant"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-container items-center justify-between px-4">
+      <div className="mx-auto flex h-16 max-w-site items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="font-display-xl text-lg font-bold text-on-surface">
-            Industria E&amp;M
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Industria E&M"
+            width={120}
+            height={40}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
