@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CopyrightYear } from "./CopyrightYear";
+import { InstagramIcon, FacebookIcon } from "@/components/ui/SocialIcon";
 
 export function Footer() {
   return (
@@ -12,6 +13,12 @@ export function Footer() {
             <p className="font-bold text-on-surface">Industria Colombia E&M</p>
             <p className="text-sm text-on-surface-variant">
               Catálogo de productos industriales
+            </p>
+            <p className="text-sm text-on-surface-variant">
+              Marca gestionada por: Michael Montaña
+            </p>
+            <p className="text-sm text-on-surface-variant">
+              NIT: 1012467711
             </p>
           </div>
 
@@ -45,6 +52,34 @@ export function Footer() {
             >
               info@industriacolombiaem.com
             </a>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold text-on-surface">Redes Sociales</p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.instagram.com/industriacolombia"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className={cn(
+                  "text-on-surface-variant hover:text-primary transition-colors"
+                )}
+              >
+                <InstagramIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/18cBBxPHRQ/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className={cn(
+                  "text-on-surface-variant hover:text-primary transition-colors"
+                )}
+              >
+                <FacebookIcon className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 

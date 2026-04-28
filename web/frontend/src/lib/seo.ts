@@ -62,6 +62,10 @@ export function generateOrganizationSchema(): object {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
+    sameAs: [
+      "https://www.instagram.com/industriacolombia",
+      "https://www.facebook.com/share/18cBBxPHRQ/",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: `+${WHATSAPP_NUMBER}`,

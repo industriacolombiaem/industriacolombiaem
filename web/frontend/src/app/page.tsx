@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
+import { SocialLinksSection } from "@/components/sections/SocialLinksSection";
 import { ProductCard } from "@/components/features/ProductCard";
 import { CategoryCard } from "@/components/features/CategoryCard";
 import { ComingSoonCard } from "@/components/features/ComingSoonCard";
@@ -117,6 +118,7 @@ export default function HomePage() {
 
         <TestimonialSection />
         <CertificationsSection />
+        <SocialLinksSection />
       </main>
       <Footer />
       <MobileNav />
