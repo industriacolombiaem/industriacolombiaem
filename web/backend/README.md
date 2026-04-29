@@ -2,15 +2,19 @@
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
+> **⚠️ Use `npm run develop`, NOT `bun run develop`.**
+> Bun's runtime uses a different native ABI than Node.js, which breaks `better-sqlite3`.
+> Bun is fine for `bun install` (faster), but runtime scripts must use Node.
+
 ### `develop`
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
 ```
 npm run develop
-# or
-yarn develop
 ```
+
+> Do NOT use `bun run develop` — it will fail with a native module ABI mismatch.
 
 ### `start`
 
