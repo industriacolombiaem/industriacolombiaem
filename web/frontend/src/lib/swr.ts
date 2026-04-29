@@ -74,7 +74,7 @@ export function useProduct(slug: string, options?: SWRConfiguration) {
 /** Hook for a single category by slug */
 export function useCategory(slug: string, options?: SWRConfiguration) {
   return useStrapiList<Category>(
-    `/api/categories?filters[slug][$eq]=${slug}&populate=image&populate[products][populate]=*`,
+    `/api/categories?filters[slug][$eq]=${slug}&populate=*`,
     options
   );
 }

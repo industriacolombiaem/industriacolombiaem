@@ -32,7 +32,7 @@ async function CategoryContent({ params }: CategoryPageProps) {
   void connection();
 
   const res = await fetchAPI<StrapiListResponse<Category>>(
-    `/api/categories?filters[slug][$eq]=${slug}&populate=image&populate[products][populate]=*`
+    `/api/categories?filters[slug][$eq]=${slug}&populate=*`
   );
 
   const category = res.data?.[0];
