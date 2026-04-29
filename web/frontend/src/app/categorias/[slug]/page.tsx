@@ -31,8 +31,10 @@ async function CategoryContent({ params }: CategoryPageProps) {
   const { slug } = await params;
   void connection();
 
+  // Deep populate: category.image + category.products + products.images
+  // populate=* only populates 1 level deep, so product.images would be null.
   const res = await fetchAPI<StrapiListResponse<Category>>(
-    `/api/categories?filters[slug][$eq]=${slug}&populate=*`
+    `/api/categories?filters[slug][$eq]=${slug}&populate[image]=true&populate[products][populate]=*`
   );
 
   const category = res.data?.[0];
