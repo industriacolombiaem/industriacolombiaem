@@ -92,84 +92,88 @@ async function ProductContent({ params }: ProductDetailPageProps) {
         <span className="text-on-surface font-semibold">{product.name}</span>
       </nav>
 
-      {/* Image Gallery */}
-      <ProductImageGallery
-        images={product.images ?? []}
-        productName={product.name}
-      />
+      {/* Product Layout: stacked on mobile, 2-column on desktop */}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {/* Image Gallery */}
+        <ProductImageGallery
+          images={product.images ?? []}
+          productName={product.name}
+        />
 
-      {/* Product Info */}
-      <div className="mt-6">
-        {/* Category Badge */}
-        {product.category && (
-          <Link
-            href={`/categorias/${product.category.slug}`}
-            className="inline-block bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-section-label hover:bg-primary/20 transition active:scale-95"
-          >
-            {product.category.name}
-          </Link>
-        )}
+        {/* Product Info */}
+        <div>
+          {/* Category Badge */}
+          {product.category && (
+            <Link
+              href={`/categorias/${product.category.slug}`}
+              className="inline-block bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-section-label hover:bg-primary/20 transition active:scale-95"
+            >
+              {product.category.name}
+            </Link>
+          )}
 
-        {/* Product Name */}
-        <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mt-2">
-          {product.name}
-        </h1>
+          {/* Product Name */}
+          <h1 className="font-display-xl text-headline-lg font-bold tracking-headline-lg text-on-surface mt-2">
+            {product.name}
+          </h1>
 
-        {/* Price */}
-        {product.price != null && (
-          <p className="text-headline-md font-bold text-primary mt-2">
-            {formatPrice(product.price)}
-          </p>
-        )}
+          {/* Price */}
+          {product.price != null && (
+            <p className="text-headline-md font-bold text-primary mt-2">
+              {formatPrice(product.price)}
+            </p>
+          )}
 
-        {/* Description */}
-        {product.description && (
-          <div className="mt-8">
-            <h2 className="font-bold text-on-surface mb-2">Descripción</h2>
-            <div className="text-on-surface-variant text-body-md">
-              <RichTextRenderer content={product.description} />
+          {/* Description */}
+          {product.description && (
+            <div className="mt-8">
+              <h2 className="font-bold text-on-surface mb-2">Descripción</h2>
+              <div className="text-on-surface-variant text-body-md">
+                <RichTextRenderer content={product.description} />
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Feature Badges */}
-        <FeatureBadges featured={product.featured} />
+          {/* Feature Badges */}
+          <FeatureBadges featured={product.featured} />
 
-        {/* Specifications */}
-        {product.specifications && product.specifications.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xs font-semibold uppercase tracking-section-label text-on-surface-variant mb-3">
-              Especificaciones Técnicas
-            </h2>
-            <div className="rounded-sm overflow-hidden">
-              <table className="w-full text-sm">
-                <tbody>
-                  {product.specifications.map((spec, i) => (
-                    <tr
-                      key={spec.key ?? i}
-                      className={
-                        i % 2 === 0
-                          ? "bg-surface-container-low"
-                          : "bg-surface-container"
-                      }
-                    >
-                      <td className="py-3 px-4 font-semibold text-on-surface w-1/3">
-                        {spec.key}
-                      </td>
-                      <td className="py-3 px-4 text-on-surface-variant">
-                        {spec.value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          {/* Specifications */}
+          {product.specifications && product.specifications.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-xs font-semibold uppercase tracking-section-label text-on-surface-variant mb-3">
+                Especificaciones Técnicas
+              </h2>
+              <div className="rounded-sm overflow-hidden">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {product.specifications.map((spec, i) => (
+                      <tr
+                        key={spec.key ?? i}
+                        className={
+                          i % 2 === 0
+                            ? "bg-surface-container-low"
+                            : "bg-surface-container"
+                        }
+                      >
+                        <td className="py-3 px-4 font-semibold text-on-surface w-1/3">
+                          {spec.key}
+                        </td>
+                        <td className="py-3 px-4 text-on-surface-variant">
+                          {spec.value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* PDP Actions: Quantity Selector + Add to Pedido */}
-        <PDPActions product={product} />
+          {/* PDP Actions: Quantity Selector + Add to Pedido */}
+          <PDPActions product={product} />
+        </div>
       </div>
+      {/* end 2-column grid */}
     </div>
   );
 }
