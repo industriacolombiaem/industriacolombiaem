@@ -3,6 +3,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {

@@ -1,6 +1,9 @@
 import { postHogMiddleware } from "@posthog/next";
+import type { NextRequest } from "next/server";
 
-export default postHogMiddleware({ proxy: true });
+export function middleware(request: NextRequest) {
+  return postHogMiddleware({ proxy: true })(request);
+}
 
 export const config = {
   matcher: [
