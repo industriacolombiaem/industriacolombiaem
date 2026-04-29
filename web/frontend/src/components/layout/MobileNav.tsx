@@ -4,16 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Package, Info, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePedidoStore } from "@/lib/pedido-store";
+import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
   { href: "/", label: "Inicio", icon: Home },
   { href: "/categorias", label: "Catálogo", icon: Package },
   { href: "/nosotros", label: "Nosotros", icon: Info },
-  { href: "/pedido", label: "Pedido", icon: ShoppingCart },
+  { href: "/pedido", label: "Pedido", icon: ShoppingCart, isPedido: true },
 ];
 
 export function MobileNav() {
   const pathname = usePathname();
+  const totalItems = usePedidoStore((state) => state.totalItems);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const pedidoCount = mounted ? totalItems() : 0;
 
   return (
     <nav
@@ -33,14 +43,29 @@ export function MobileNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex flex-col items-center gap-1 px-3 py-1",
+                "relative flex flex-col items-center gap-1 px-3 py-1",
                 "transition active:scale-95",
                 isActive
                   ? "text-primary"
                   : "text-on-surface-variant hover:text-primary"
               )}
             >
-              <Icon className="h-5 w-5" />
+              <span className="relative">
+                <Icon className="h-5 w-5" />
+                {item.isPedido && pedidoCount > 0 && (
+                  <span
+                    className={cn(
+                      "absolute -top-1.5 -right-2.5",
+                      "bg-primary text-on-primary",
+                      "rounded-full min-w-[16px] h-[16px]",
+                      "flex items-center justify-center",
+                      "text-[9px] font-bold"
+                    )}
+                  >
+                    {pedidoCount > 99 ? "99+" : pedidoCount}
+                  </span>
+                )}
+              </span>
               <span className="text-[10px] font-semibold uppercase tracking-label-sm">
                 {item.label}
               </span>

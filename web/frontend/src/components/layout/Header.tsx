@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HeaderPedidoLink } from "@/components/features/PedidoBadge";
 
+
 export function Header() {
   return (
     <header
@@ -59,10 +60,18 @@ export function Header() {
           <HeaderPedidoLink />
         </nav>
 
-        {/* Mobile: separate pedido link with badge, no nesting */}
-        <div className="md:hidden">
-          <HeaderPedidoLink />
-        </div>
+        {/* Mobile: search button only — pedido lives in bottom nav */}
+        <Link
+          href="/categorias"
+          aria-label="Buscar productos"
+          className={cn(
+            "md:hidden",
+            "text-on-surface-variant hover:text-primary",
+            "transition active:scale-95"
+          )}
+        >
+          <Search className="h-5 w-5" />
+        </Link>
       </div>
     </header>
   );
