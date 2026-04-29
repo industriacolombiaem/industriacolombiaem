@@ -16,14 +16,16 @@ const NAV_ITEMS = [
 
 export function MobileNav() {
   const pathname = usePathname();
-  const totalItems = usePedidoStore((state) => state.totalItems);
+  const pedidoCount = usePedidoStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0)
+  );
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const pedidoCount = mounted ? totalItems() : 0;
+  const displayCount = mounted ? pedidoCount : 0;
 
   return (
     <nav
@@ -52,7 +54,7 @@ export function MobileNav() {
             >
               <span className="relative">
                 <Icon className="h-5 w-5" />
-                {item.isPedido && pedidoCount > 0 && (
+                {item.isPedido && displayCount > 0 && (
                   <span
                     className={cn(
                       "absolute -top-1.5 -right-2.5",
@@ -62,7 +64,7 @@ export function MobileNav() {
                       "text-[9px] font-bold"
                     )}
                   >
-                    {pedidoCount > 99 ? "99+" : pedidoCount}
+                    {displayCount > 99 ? "99+" : displayCount}
                   </span>
                 )}
               </span>

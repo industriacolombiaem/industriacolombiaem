@@ -5,7 +5,9 @@ import { usePedidoStore } from "@/lib/pedido-store";
 
 export function OrderSummary() {
   const items = usePedidoStore((state) => state.items);
-  const totalPrice = usePedidoStore((state) => state.totalPrice);
+  const totalPrice = usePedidoStore((state) =>
+    state.items.reduce((sum, item) => sum + (item.product.price ?? 0) * item.quantity, 0)
+  );
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const hasAnyPrice = items.some((item) => item.product.price != null);
@@ -21,7 +23,7 @@ export function OrderSummary() {
         </span>
         {hasAnyPrice && (
           <span className="font-bold text-primary text-lg">
-            {formatPrice(totalPrice())}
+            {formatPrice(totalPrice)}
           </span>
         )}
       </div>

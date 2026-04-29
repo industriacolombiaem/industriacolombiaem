@@ -11,7 +11,9 @@ import { ShoppingCart } from "lucide-react";
  * Displays as an absolute-positioned dot on parent element.
  */
 export function PedidoBadge() {
-  const totalItems = usePedidoStore((state) => state.totalItems);
+  const count = usePedidoStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0)
+  );
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +22,6 @@ export function PedidoBadge() {
 
   if (!mounted) return null;
 
-  const count = totalItems();
   if (count === 0) return null;
 
   return (
@@ -44,14 +45,14 @@ export function PedidoBadge() {
  * mobile shows just the text (handled by Header.tsx).
  */
 export function HeaderPedidoLink() {
-  const totalItems = usePedidoStore((state) => state.totalItems);
+  const count = usePedidoStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0)
+  );
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const count = totalItems();
 
   return (
     <Link

@@ -13,7 +13,9 @@ import { OrderSummary } from "./OrderSummary";
 export function PedidoPanel() {
   const items = usePedidoStore((state) => state.items);
   const clear = usePedidoStore((state) => state.clear);
-  const totalItems = usePedidoStore((state) => state.totalItems);
+  const itemCount = usePedidoStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0)
+  );
   const sendWhatsApp = usePedidoStore((state) => state.sendWhatsApp);
   const posthog = useSafePostHog();
 
@@ -22,7 +24,7 @@ export function PedidoPanel() {
   const handleClear = () => {
     if (window.confirm("¿Estás seguro de que quieres limpiar tu pedido?")) {
       posthog.capture("pedido_cleared", {
-        item_count: totalItems(),
+        item_count: itemCount,
       });
       clear();
     }
@@ -57,7 +59,7 @@ export function PedidoPanel() {
         <div className="flex items-center gap-2">
           <ShoppingCart className="h-5 w-5 text-primary" />
           <span className="text-sm text-on-surface-variant">
-            ({totalItems()} {totalItems() === 1 ? "producto" : "productos"})
+            ({itemCount} {itemCount === 1 ? "producto" : "productos"})
           </span>
         </div>
         <button
@@ -89,7 +91,7 @@ export function PedidoPanel() {
         <Button
           onClick={() => {
             posthog.capture("pedido_sent_whatsapp", {
-              item_count: totalItems(),
+               item_count: itemCount,
               product_ids: items.map((item) => item.product.id),
             });
             sendWhatsApp();
