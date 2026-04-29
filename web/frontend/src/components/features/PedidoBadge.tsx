@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePedidoStore } from "@/lib/pedido-store";
 import { cn } from "@/lib/utils";
@@ -11,8 +12,15 @@ import { ShoppingCart } from "lucide-react";
  */
 export function PedidoBadge() {
   const totalItems = usePedidoStore((state) => state.totalItems);
-  const count = totalItems();
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const count = totalItems();
   if (count === 0) return null;
 
   return (
@@ -37,6 +45,12 @@ export function PedidoBadge() {
  */
 export function HeaderPedidoLink() {
   const totalItems = usePedidoStore((state) => state.totalItems);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const count = totalItems();
 
   return (
@@ -51,7 +65,7 @@ export function HeaderPedidoLink() {
     >
       <ShoppingCart className="h-4 w-4" />
       Pedido
-      {count > 0 && (
+      {mounted && count > 0 && (
         <span
           className={cn(
             "bg-primary text-on-primary",

@@ -1,6 +1,6 @@
 "use client";
 
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import { useEffect } from "react";
 
 interface ProductViewTrackerProps {
@@ -16,7 +16,7 @@ export function ProductViewTracker({
   productSlug,
   category,
 }: ProductViewTrackerProps) {
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
 
   useEffect(() => {
     posthog.capture("product_viewed", {

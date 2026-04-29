@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { filterProducts } from "@/lib/search";
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import { ProductCard } from "@/components/features/ProductCard";
 import { Search, X } from "lucide-react";
 import type { Product, Category } from "@/lib/strapi";
@@ -16,7 +16,7 @@ interface CatalogClientProps {
 export function CatalogClient({ products, categories }: CatalogClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filtered = useMemo(

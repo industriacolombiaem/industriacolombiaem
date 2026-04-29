@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePedidoStore, toPedidoProduct } from "@/lib/pedido-store";
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import type { Product } from "@/lib/strapi";
 import { ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -17,17 +17,23 @@ interface AddToPedidoButtonProps {
 
 export function AddToPedidoButton({ product, className, size = "md", quantity }: AddToPedidoButtonProps) {
   const addItem = usePedidoStore((state) => state.addItem);
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
   const [added, setAdded] = useState(false);
 
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     addItem(toPedidoProduct(product), quantity ?? 1);
-    posthog.capture("product_added_to_pedido", {
-      product_id: product.id,
-      product_name: product.name,
-      product_slug: product.slug,
-    });
+    try {
+      posthog.capture("product_added_to_pedido", {
+        product_id: product.id,
+        product_name: product.name,
+        product_slug: product.slug,
+      });
+    } catch (e) {
+      if (process.env.NODE_ENV === "development") {
+        console.warn("PostHog capture failed:", e);
+      }
+    }
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };

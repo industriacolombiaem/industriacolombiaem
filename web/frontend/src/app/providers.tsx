@@ -21,7 +21,7 @@ export function Providers({ children }: LayoutProvidersProps) {
 
   return (
     <Suspense fallback={null}>
-      <PostHogProvider clientOptions={{ api_host: POSTHOG_HOST }}>
+      <PostHogProvider apiKey={POSTHOG_KEY} clientOptions={{ api_host: POSTHOG_HOST }}>
         <ClientProviders>{children}</ClientProviders>
       </PostHogProvider>
     </Suspense>

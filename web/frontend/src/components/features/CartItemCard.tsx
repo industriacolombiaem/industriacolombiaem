@@ -5,7 +5,7 @@ import { X, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils";
 import { usePedidoStore, type PedidoProduct } from "@/lib/pedido-store";
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import { PedidoQuantityStepper } from "./PedidoQuantityStepper";
 
 interface CartItemCardProps {
@@ -16,7 +16,7 @@ interface CartItemCardProps {
 export function CartItemCard({ product, quantity }: CartItemCardProps) {
   const removeItem = usePedidoStore((state) => state.removeItem);
   const updateQuantity = usePedidoStore((state) => state.updateQuantity);
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
 
   const hasPrice = product.price != null;
   const itemTotal = hasPrice ? product.price! * quantity : 0;

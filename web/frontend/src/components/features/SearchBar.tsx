@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { filterProducts } from "@/lib/search";
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import { ProductCard } from "@/components/features/ProductCard";
 import { Search, X } from "lucide-react";
 import type { Product, Category } from "@/lib/strapi";
@@ -17,7 +17,7 @@ interface SearchBarProps {
 export function SearchBar({ products, categories, className }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [categoryId, setCategoryId] = useState<number | null>(null);
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filtered = useMemo(

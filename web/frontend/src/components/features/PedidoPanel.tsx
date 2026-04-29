@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { usePedidoStore } from "@/lib/pedido-store";
-import { usePostHog } from "@posthog/next";
+import { useSafePostHog } from "@/lib/use-safe-posthog";
 import { ShoppingCart, Send, ArrowLeft, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export function PedidoPanel() {
   const clear = usePedidoStore((state) => state.clear);
   const totalItems = usePedidoStore((state) => state.totalItems);
   const sendWhatsApp = usePedidoStore((state) => state.sendWhatsApp);
-  const posthog = usePostHog();
+  const posthog = useSafePostHog();
 
   const isEmpty = items.length === 0;
 
