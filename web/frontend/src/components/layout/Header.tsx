@@ -4,24 +4,26 @@ import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HeaderPedidoLink } from "@/components/features/PedidoBadge";
 
-
 export function Header() {
   return (
     <header
       className={cn(
         "sticky top-0 z-50",
         "bg-surface/80 backdrop-blur-md",
-        "border-b border-outline-variant"
+        "border-b border-outline-variant",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-site items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 active:scale-95 transition-transform">
+      <div className="mx-auto flex max-w-site items-center justify-between px-4">
+        <Link
+          href="/"
+          className="flex items-center gap-2 active:scale-95 transition-transform"
+        >
           <Image
             src="/logo.png"
             alt="Industria E&M"
             width={120}
             height={40}
-            className="h-10 w-auto object-contain"
+            className="h-16 w-auto object-contain"
             priority
           />
         </Link>
@@ -32,7 +34,7 @@ export function Header() {
             className={cn(
               "text-sm font-semibold uppercase tracking-section-label",
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-95"
+              "transition active:scale-95",
             )}
           >
             Catálogo
@@ -42,7 +44,7 @@ export function Header() {
             className={cn(
               "text-sm font-semibold uppercase tracking-section-label",
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-95"
+              "transition active:scale-95",
             )}
           >
             Nosotros
@@ -52,7 +54,7 @@ export function Header() {
             aria-label="Buscar productos"
             className={cn(
               "text-on-surface-variant hover:text-primary",
-              "transition active:scale-95"
+              "transition active:scale-95",
             )}
           >
             <Search className="h-5 w-5" />
@@ -67,7 +69,7 @@ export function Header() {
           className={cn(
             "md:hidden",
             "text-on-surface-variant hover:text-primary",
-            "transition active:scale-95"
+            "transition active:scale-95",
           )}
         >
           <Search className="h-5 w-5" />
